@@ -15,6 +15,11 @@ public class GameReactionClick : MonoBehaviour
     [SerializeField] private Color _redColor;
     [SerializeField] private Color _greenColor;
 
+    [SerializeField] private float _maxAmountOfPointsToObtain;
+
+    [SerializeField] private float _achievedPointsPrecise;
+    private int _achievedPointsRounded;
+
     private float _timeUntilColorSwitch;
     private bool _colorIsClickable = false;
 
@@ -26,24 +31,43 @@ public class GameReactionClick : MonoBehaviour
         _colorImage.color = _redColor;
 
         _timeUntilColorSwitch = Random.Range(1.5f, 6f);
+
+        _achievedPointsPrecise = _maxAmountOfPointsToObtain; 
     }
     private void CheckCurrentColor()
     {
         if (_colorIsClickable)
         {
-            print("yeag");
+            _colorIsClickable = false;
+
+            _achievedPointsRounded = (int)Mathf.Round(_achievedPointsPrecise);
+            print(_achievedPointsRounded);
         }
     }
     private void Update()
     {
-        if(_timeUntilColorSwitch > 0)
+        CountDownBeforeColorChange();
+
+        DecreasePointsAfterColorChange();
+    }
+    private void CountDownBeforeColorChange()
+    {
+        if (_timeUntilColorSwitch > 0)
         {
             _timeUntilColorSwitch -= Time.deltaTime;
         }
-        else if(!_colorIsClickable)
+        else if (!_colorIsClickable)
         {
             _colorIsClickable = true;
             _colorImage.color = _greenColor;
         }
     }
+    private void DecreasePointsAfterColorChange()
+    {
+        if (_colorIsClickable)
+        {
+            _achievedPointsPrecise -= Time.deltaTime * 100f;
+        }
+    }
+    
 }

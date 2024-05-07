@@ -13,4 +13,5 @@ public class DisableSelfOrSpecified : MonoBehaviour
     {
         objectToDisable.SetActive(false);
     }
+
 }
