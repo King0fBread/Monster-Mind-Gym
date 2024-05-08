@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,16 +8,42 @@ public class GameAimTrainer : MonoBehaviour
 {
     [SerializeField] private Button _aimTargetButton;
 
-    private float _targetPositionX;
-    private float _targetPositionY;
+    [SerializeField] private int _totalNumberOfTargets;
+
+    [SerializeField] private Transform[] _aimTargetTransforms;
+
+    private int _currentNumberOfTargets;
+
+    private float _passedTime;
+
+    private RectTransform _buttonRectTransform;
 
     private void OnEnable()
     {
-        Camera cam = Camera.main;
+        _aimTargetButton.onClick.RemoveAllListeners();
+        _aimTargetButton.onClick.AddListener(DisplayNextTargetPosition);
 
-        _targetPositionX = Random.Range(cam.ScreenToWorldPoint(new Vector2(0, 0)).x, cam.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
-        _targetPositionY = Random.Range(cam.ScreenToWorldPoint(new Vector2(0, 0)).y, cam.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+        _buttonRectTransform = _aimTargetButton.GetComponent<RectTransform>();
 
-        _aimTargetButton.transform.position = new Vector2(_targetPositionX, _targetPositionY);
+        _currentNumberOfTargets = 0;
+    }
+    private void Update()
+    {
+        _passedTime += Time.deltaTime;
+    }
+    private void DisplayNextTargetPosition()
+    {
+        _currentNumberOfTargets++;
+
+        if(_currentNumberOfTargets < _totalNumberOfTargets)
+        {
+            int randomPointID = Random.Range(0, _aimTargetTransforms.Length-1);
+            _buttonRectTransform.position = _aimTargetTransforms[randomPointID].position;
+        }
+        else
+        {
+            print(_passedTime);
+        }
+
     }
 }
