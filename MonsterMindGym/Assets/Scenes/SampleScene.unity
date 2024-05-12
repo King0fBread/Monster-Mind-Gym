@@ -4650,6 +4650,8 @@ MonoBehaviour:
   - {fileID: 1417409143}
   _buttonDefaultColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   _buttonActivatedColor: {r: 1, g: 1, b: 1, a: 1}
+  _delayBeforeDisplayingPattern: 0.8
+  _delayBeforeColorChange: 0.4
 --- !u!1 &1873811637
 GameObject:
   m_ObjectHideFlags: 0
