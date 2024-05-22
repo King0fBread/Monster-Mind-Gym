@@ -46,12 +46,28 @@ public class RoomTransitionsManager : MonoBehaviour
     }
     public void MoveToLeftRoomByButton()
     {
+        if(_currentRoom != null)
+        {
+            _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
+        }
+
         _currentRoom = _rooms[_currentRoom.GetRoomID() - 1];
+
+        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
+
         SetCurrentRoomComponents();
     }
     public void MoveToRightRoomByButton()
     {
+        if (_currentRoom != null)
+        {
+            _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
+        }
+
         _currentRoom = _rooms[_currentRoom.GetRoomID() + 1];
+
+        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
+
         SetCurrentRoomComponents();
     }
 }
