@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +23,7 @@ public class GameAimTrainer : MonoBehaviour
         _buttonRectTransform = _aimTargetButton.GetComponent<RectTransform>();
 
         _currentNumberOfTargets = 0;
+
     }
     private void Update()
     {
@@ -33,6 +31,7 @@ public class GameAimTrainer : MonoBehaviour
     }
     private void DisplayNextTargetPosition()
     {
+
         _currentNumberOfTargets++;
 
         if(_currentNumberOfTargets < _totalNumberOfTargets)

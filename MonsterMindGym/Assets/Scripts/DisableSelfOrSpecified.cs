@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class DisableSelfOrSpecified : MonoBehaviour
 {
-    public GameObject objectToDisable;
+    public GameObject objectToToggle;
     public void DisableSelf()
     {
         gameObject.SetActive(false);
     }
     public void DisableSpecified()
     {
-        objectToDisable.SetActive(false);
+        objectToToggle.SetActive(false);
+    }
+    public void EnableSpecified()
+    {
+        objectToToggle.SetActive(true);
     }
 
 }

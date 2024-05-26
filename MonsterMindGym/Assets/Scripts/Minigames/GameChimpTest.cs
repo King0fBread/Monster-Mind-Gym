@@ -5,9 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameChimpTest : MonoBehaviour
+public class GameChimpTest : MonoBehaviour, ICountableLevelMinigame
 {
     [SerializeField] private Button[] _buttons;
+
+    [SerializeField] private TextMeshProUGUI _levelText;
+
+    private int _currentLevel = 0;
 
     private List<Button> _patternList;
 
@@ -26,6 +30,9 @@ public class GameChimpTest : MonoBehaviour
     }
     private void GrowPattern()
     {
+        _currentLevel++;
+        DisplayCurrentLevel(_levelText, _currentLevel);
+
         HidePreviousPattern();
 
         if(_currentPatternSize >= _buttons.Length)
@@ -104,5 +111,10 @@ public class GameChimpTest : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => ProcessButtonClick(button));
         }
+    }
+
+    public void DisplayCurrentLevel(TextMeshProUGUI levelTextObject, int currentLevel)
+    {
+        levelTextObject.text = "LEVEL " + currentLevel.ToString();
     }
 }

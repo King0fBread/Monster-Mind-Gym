@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Properties;
 
-public class GameNumberMemory : MonoBehaviour
+public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
 {
     [SerializeField] private TextMeshProUGUI _numberDisplayText;
     [SerializeField] private TMP_InputField _numberInputField;
     [SerializeField] private Button _submitButton;
+
+    [SerializeField] private TextMeshProUGUI _levelText;
+
+    private int _currentLevel = 0;
 
     private int _numberSize;
     private int _currentNumber;
@@ -28,6 +33,7 @@ public class GameNumberMemory : MonoBehaviour
     }
     private void CheckSubmittedNumber()
     {
+
         if (_numberInputField.text == null)
         {
             return;
@@ -44,6 +50,9 @@ public class GameNumberMemory : MonoBehaviour
     }
     private void GrowAndGenerateNumber()
     {
+        _currentLevel++;
+        DisplayCurrentLevel(_levelText, _currentLevel);
+
         _numberSize++;
 
         int minNumber = (int)Mathf.Pow(10, _numberSize - 1);
@@ -56,5 +65,10 @@ public class GameNumberMemory : MonoBehaviour
     private void HideNumber(string arg)
     {
         _numberDisplayText.text = "???";
+    }
+
+    public void DisplayCurrentLevel(TextMeshProUGUI levelTextObject, int currentLevel)
+    {
+        levelTextObject.text = "LEVEL " + currentLevel.ToString();
     }
 }

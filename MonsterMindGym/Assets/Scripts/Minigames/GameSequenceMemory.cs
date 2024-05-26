@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameSequenceMemory : MonoBehaviour
+public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
 {
     [SerializeField] private Button[] _buttons;
 
@@ -12,6 +13,10 @@ public class GameSequenceMemory : MonoBehaviour
 
     [SerializeField] private float _delayBeforeDisplayingPattern;
     [SerializeField] private float _delayBeforeColorChange;
+
+    [SerializeField] private TextMeshProUGUI _levelText;
+
+    private int _currentLevel = 0;
 
     private List<Button> _patternToRepeat;
 
@@ -26,6 +31,7 @@ public class GameSequenceMemory : MonoBehaviour
 
         GrowPattern();
         AssignButtonClicks();
+
     }
     private void AssignButtonClicks()
     {
@@ -37,6 +43,9 @@ public class GameSequenceMemory : MonoBehaviour
     }
     private void GrowPattern()
     {
+        _currentLevel++;
+        DisplayCurrentLevel(_levelText, _currentLevel);
+
         Button newPatternButton = _buttons[Random.Range(0, _buttons.Length - 1)];
         _patternToRepeat.Add(newPatternButton);
 
@@ -93,5 +102,10 @@ public class GameSequenceMemory : MonoBehaviour
         }
 
 
+    }
+
+    public void DisplayCurrentLevel(TextMeshProUGUI levelTextObject, int currentLevel)
+    {
+        levelTextObject.text = "LEVEL " + currentLevel.ToString();
     }
 }
