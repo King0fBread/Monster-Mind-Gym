@@ -23,16 +23,21 @@ public class GameReactionClick : MonoBehaviour
     private float _timeUntilColorSwitch;
     private bool _colorIsClickable = false;
 
+    private int[] _totalAchievedPointsInThreeRounds;
+    private int _currentRoundID;
+
     private void OnEnable()
     {
         _colorButton.onClick.RemoveAllListeners();
         _colorButton.onClick.AddListener(CheckCurrentColor);
 
-        _colorImage.color = _redColor;
+        ResetRandomColorTimer();
 
-        _timeUntilColorSwitch = Random.Range(1.5f, 6f);
+        _achievedPointsPrecise = _maxAmountOfPointsToObtain;
 
-        _achievedPointsPrecise = _maxAmountOfPointsToObtain; 
+        _totalAchievedPointsInThreeRounds = new int[3];
+
+        _currentRoundID = 0;
     }
     private void CheckCurrentColor()
     {
@@ -41,8 +46,24 @@ public class GameReactionClick : MonoBehaviour
             _colorIsClickable = false;
 
             _achievedPointsRounded = (int)Mathf.Round(_achievedPointsPrecise);
-            print(_achievedPointsRounded);
+            _totalAchievedPointsInThreeRounds[_currentRoundID] = _achievedPointsRounded;
+
+            if (_currentRoundID < _totalAchievedPointsInThreeRounds.Length - 1)
+            {
+                _currentRoundID++;
+                ResetRandomColorTimer();
+            }
+            else
+            {
+                print("3 rounds");
+            }
+
         }
+    }
+    private void ResetRandomColorTimer()
+    {
+        _timeUntilColorSwitch = Random.Range(1.5f, 6f);
+        _colorImage.color = _redColor;
     }
     private void Update()
     {
