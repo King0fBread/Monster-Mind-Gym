@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,12 +38,17 @@ public class GameAimTrainer : MonoBehaviour
 
         if(_currentNumberOfTargets < _totalNumberOfTargets)
         {
-            int randomPointID = Random.Range(0, _aimTargetTransforms.Length-1);
+            int randomPointID = UnityEngine.Random.Range(0, _aimTargetTransforms.Length-1);
             _buttonRectTransform.position = _aimTargetTransforms[randomPointID].position;
         }
         else
         {
             print(_passedTime);
+
+            Math.Round(_passedTime, 2);
+
+            int roundedPoints = Convert.ToInt32( 4 / _passedTime * 150);
+            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(roundedPoints);
         }
 
     }

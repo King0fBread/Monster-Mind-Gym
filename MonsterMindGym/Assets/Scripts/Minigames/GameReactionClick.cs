@@ -17,7 +17,7 @@ public class GameReactionClick : MonoBehaviour
 
     [SerializeField] private float _maxAmountOfPointsToObtain;
 
-    [SerializeField] private float _achievedPointsPrecise;
+    private float _achievedPointsPrecise;
     private int _achievedPointsRounded;
 
     private float _timeUntilColorSwitch;
@@ -56,6 +56,19 @@ public class GameReactionClick : MonoBehaviour
             else
             {
                 print("3 rounds");
+
+                int totalPoints = 0;
+                foreach(int roundPoints in _totalAchievedPointsInThreeRounds)
+                {
+                    totalPoints += roundPoints;
+                }
+
+                if (totalPoints < 1)
+                {
+                    totalPoints = 1;
+                }
+
+                MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(totalPoints);
             }
 
         }

@@ -16,7 +16,7 @@ public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
 
     [SerializeField] private TextMeshProUGUI _levelText;
 
-    private int _currentLevel = 0;
+    private int _currentLevel;
 
     private List<Button> _patternToRepeat;
 
@@ -28,6 +28,8 @@ public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
     private void OnEnable()
     {
         _patternToRepeat = new List<Button>();
+
+        _currentLevel = 0;
 
         GrowPattern();
         AssignButtonClicks();
@@ -99,8 +101,8 @@ public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
         else
         {
             print("LOSE");
+            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 16);
         }
-
 
     }
 

@@ -11,16 +11,17 @@ public class GameChimpTest : MonoBehaviour, ICountableLevelMinigame
 
     [SerializeField] private TextMeshProUGUI _levelText;
 
-    private int _currentLevel = 0;
 
     private List<Button> _patternList;
 
+    private int _currentLevel;
     private int _currentPatternSize;
     private int _currentTapIndex;
     private void OnEnable()
     {
         _patternList = new List<Button>();
 
+        _currentLevel = 0;
         _currentPatternSize = 2;
         _currentTapIndex = 0;
 
@@ -101,6 +102,7 @@ public class GameChimpTest : MonoBehaviour, ICountableLevelMinigame
         }
         else
         {
+            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 16);
             print("LOSE");
         }
     }

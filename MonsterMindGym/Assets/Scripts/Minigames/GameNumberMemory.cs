@@ -13,7 +13,7 @@ public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
 
     [SerializeField] private TextMeshProUGUI _levelText;
 
-    private int _currentLevel = 0;
+    private int _currentLevel;
 
     private int _numberSize;
     private int _currentNumber;
@@ -28,6 +28,8 @@ public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
 
         _numberInputField.contentType = TMP_InputField.ContentType.IntegerNumber;
         _numberSize = 0;
+
+        _currentLevel = 0;
 
         GrowAndGenerateNumber();
     }
@@ -46,6 +48,7 @@ public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
         else
         {
             print("LOSE");
+            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 17);
         }
     }
     private void GrowAndGenerateNumber()
