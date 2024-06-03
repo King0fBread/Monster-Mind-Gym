@@ -11,7 +11,7 @@ public class CurrencyManager : MonoBehaviour
     }
     public void AddCoins(int amount)
     {
-        //minigame reward calc ref
+        
     }
     public bool TrySpendCoins(int amount)
     {

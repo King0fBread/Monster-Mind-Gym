@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MinigameRewardCalculator : MonoBehaviour
 {
+    [SerializeField] private CurrencyManager _currencyManager;
+
     private static MinigameRewardCalculator _instance;
     public static MinigameRewardCalculator instance { get { return _instance; } }
+
+    private int _initialCurrencyAmount;
     private void Awake()
     {
         if(_instance != null && _instance != this)
@@ -19,6 +23,6 @@ public class MinigameRewardCalculator : MonoBehaviour
     }
     public void CalculateInitialEarnedCurrency(int earnedPoints)
     {
-        print("POINTS: " + earnedPoints);
+        _initialCurrencyAmount = earnedPoints;
     }
 }
