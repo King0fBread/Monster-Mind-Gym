@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
+public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame, IFinishableGame
 {
     [SerializeField] private Button[] _buttons;
 
@@ -100,8 +100,7 @@ public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
         }
         else
         {
-            print("LOSE");
-            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 16);
+            FinishGameAndDisplayResult();
         }
 
     }
@@ -109,5 +108,14 @@ public class GameSequenceMemory : MonoBehaviour, ICountableLevelMinigame
     public void DisplayCurrentLevel(TextMeshProUGUI levelTextObject, int currentLevel)
     {
         levelTextObject.text = "LEVEL " + currentLevel.ToString();
+    }
+
+    public void FinishGameAndDisplayResult()
+    {
+        int points = _currentLevel * 16;
+        MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 16);
+        RewardScreenManager.instance.EnableRewardScreen(points, _currentLevel);
+
+        gameObject.SetActive(false);
     }
 }

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.Properties;
 
-public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
+public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame, IFinishableGame
 {
     [SerializeField] private TextMeshProUGUI _numberDisplayText;
     [SerializeField] private TMP_InputField _numberInputField;
@@ -47,8 +47,7 @@ public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
         }
         else
         {
-            print("LOSE");
-            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 17);
+            FinishGameAndDisplayResult();
         }
     }
     private void GrowAndGenerateNumber()
@@ -73,5 +72,14 @@ public class GameNumberMemory : MonoBehaviour, ICountableLevelMinigame
     public void DisplayCurrentLevel(TextMeshProUGUI levelTextObject, int currentLevel)
     {
         levelTextObject.text = "LEVEL " + currentLevel.ToString();
+    }
+
+    public void FinishGameAndDisplayResult()
+    {
+        int points = _currentLevel * 17;
+        MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 17);
+        RewardScreenManager.instance.EnableRewardScreen(points, bestLevelIfPresent:_currentLevel);
+
+        gameObject.SetActive(false);
     }
 }

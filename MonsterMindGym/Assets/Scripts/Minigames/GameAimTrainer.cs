@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameAimTrainer : MonoBehaviour
+public class GameAimTrainer : MonoBehaviour, IFinishableGame
 {
     [SerializeField] private Button _aimTargetButton;
 
@@ -12,6 +12,8 @@ public class GameAimTrainer : MonoBehaviour
     [SerializeField] private Transform[] _aimTargetTransforms;
 
     private int _currentNumberOfTargets;
+
+    private int _roundedPoints;
 
     private float _passedTime;
 
@@ -43,13 +45,19 @@ public class GameAimTrainer : MonoBehaviour
         }
         else
         {
-            print(_passedTime);
-
             Math.Round(_passedTime, 2);
 
-            int roundedPoints = Convert.ToInt32( 4 / _passedTime * 150);
-            MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(roundedPoints);
+            _roundedPoints = Convert.ToInt32( 4 / _passedTime * 150);
+            FinishGameAndDisplayResult();
         }
 
+    }
+
+    public void FinishGameAndDisplayResult()
+    {
+        MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_roundedPoints);
+        RewardScreenManager.instance.EnableRewardScreen(_roundedPoints, bestTimeIfPresent: Math.Round(_passedTime, 3));
+
+        gameObject.SetActive(false);
     }
 }

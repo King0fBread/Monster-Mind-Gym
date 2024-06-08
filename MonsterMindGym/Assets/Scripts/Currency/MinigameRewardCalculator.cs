@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class MinigameRewardCalculator : MonoBehaviour
     private static MinigameRewardCalculator _instance;
     public static MinigameRewardCalculator instance { get { return _instance; } }
 
-    private int _initialCurrencyAmount;
+    private int _currencyAmount;
     private void Awake()
     {
         if(_instance != null && _instance != this)
@@ -23,6 +24,15 @@ public class MinigameRewardCalculator : MonoBehaviour
     }
     public void CalculateInitialEarnedCurrency(int earnedPoints)
     {
-        _initialCurrencyAmount = earnedPoints;
+        _currencyAmount = earnedPoints;
+    }
+    public void CalculateElixirMultipliedCurrency(float multiplier)
+    {
+        float _modifiedCurrencyPrecise = _currencyAmount + multiplier;
+        _currencyAmount = Convert.ToInt32(_modifiedCurrencyPrecise);
+    }
+    public int GetMinigameCurrencyAmount()
+    {
+        return _currencyAmount;
     }
 }

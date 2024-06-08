@@ -36,17 +36,13 @@ public class RoomTransitionsManager : MonoBehaviour
     }
     private void SetCurrentRoomComponents()
     {
-        _camera.transform.position = _currentRoom.GetCamTransformPosition();
-        _roomNameText.text = _currentRoom.GetRoomName();
-
-        for(int i = 0; i<_movementButtonsLeftRight.Length; i++)
-        {
-            _movementButtonsLeftRight[i].gameObject.SetActive(_currentRoom.GetAvailableRoomDirections()[i]);
-        }
+        StartCoroutine(SetCurrentRoomComponentsCoroutine());
     }
-    public void MoveToLeftRoomByButton()
+    public void MoveToLeftRoom()
     {
-        if(_currentRoom != null)
+        StartCoroutine(SetCurrentRoomComponentsCoroutine());
+
+        if (_currentRoom != null)
         {
             _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
         }
@@ -57,8 +53,9 @@ public class RoomTransitionsManager : MonoBehaviour
 
         SetCurrentRoomComponents();
     }
-    public void MoveToRightRoomByButton()
+    public void MoveToRightRoom()
     {
+
         if (_currentRoom != null)
         {
             _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
@@ -69,5 +66,19 @@ public class RoomTransitionsManager : MonoBehaviour
         _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
 
         SetCurrentRoomComponents();
+    }
+    private IEnumerator SetCurrentRoomComponentsCoroutine()
+    {
+        BlackoutScreenDelayManager.Instance.InitiateBlackoutDelay();
+
+        yield return new WaitForSeconds(0.30f);
+
+        _camera.transform.position = _currentRoom.GetCamTransformPosition();
+        _roomNameText.text = _currentRoom.GetRoomName();
+
+        for (int i = 0; i < _movementButtonsLeftRight.Length; i++)
+        {
+            _movementButtonsLeftRight[i].gameObject.SetActive(_currentRoom.GetAvailableRoomDirections()[i]);
+        }
     }
 }
