@@ -20040,8 +20040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9ec0ed7413a374a97cf448df557ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyManager: {fileID: 815371904}
   _minigameMenuObject: {fileID: 1684444335}
+  _currencyObject: {fileID: 1278350003}
+  _backgroundObject: {fileID: 738385132}
+  _currencyManager: {fileID: 815371904}
   _roomTransitionsManager: {fileID: 1553235967}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
