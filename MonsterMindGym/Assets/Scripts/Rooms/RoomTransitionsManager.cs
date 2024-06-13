@@ -32,46 +32,30 @@ public class RoomTransitionsManager : MonoBehaviour
     }
     private void Start()
     {
-        SetCurrentRoomComponents();
-    }
-    private void SetCurrentRoomComponents()
-    {
-        StartCoroutine(SetCurrentRoomComponentsCoroutine());
+        StartCoroutine(SetCurrentRoomComponentsCoroutine(isMovingToInitialRoom:true));
     }
     public void MoveToLeftRoom()
     {
-        StartCoroutine(SetCurrentRoomComponentsCoroutine());
-
-        if (_currentRoom != null)
-        {
-            _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
-        }
-
-        _currentRoom = _rooms[_currentRoom.GetRoomID() - 1];
-
-        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
-
-        SetCurrentRoomComponents();
+        StartCoroutine(SetCurrentRoomComponentsCoroutine(isMovingToLeftRoom:true));
     }
     public void MoveToRightRoom()
     {
-
-        if (_currentRoom != null)
-        {
-            _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
-        }
-
-        _currentRoom = _rooms[_currentRoom.GetRoomID() + 1];
-
-        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
-
-        SetCurrentRoomComponents();
+        StartCoroutine(SetCurrentRoomComponentsCoroutine(isMovingToLeftRoom:false));
     }
-    private IEnumerator SetCurrentRoomComponentsCoroutine()
+    private IEnumerator SetCurrentRoomComponentsCoroutine(bool isMovingToLeftRoom = false, bool isMovingToInitialRoom = false)
     {
         BlackoutScreenDelayManager.Instance.InitiateBlackoutDelay();
 
         yield return new WaitForSeconds(0.30f);
+
+        if (isMovingToInitialRoom)
+        {
+            ExecuteInitalAreaEntranceMechanic();
+        }
+        else
+        {
+            ExecuteAreaExitEntranceMechanics(isMovingToLeftRoom);
+        }
 
         _camera.transform.position = _currentRoom.GetCamTransformPosition();
         _roomNameText.text = _currentRoom.GetRoomName();
@@ -80,5 +64,22 @@ public class RoomTransitionsManager : MonoBehaviour
         {
             _movementButtonsLeftRight[i].gameObject.SetActive(_currentRoom.GetAvailableRoomDirections()[i]);
         }
+    }
+    private void ExecuteAreaExitEntranceMechanics(bool isMovingToLeftRoom)
+    {
+        int roomIdChange = isMovingToLeftRoom ? -1 : 1;
+
+        if (_currentRoom != null)
+        {
+            _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaExit();
+        }
+
+        _currentRoom = _rooms[_currentRoom.GetRoomID() + roomIdChange];
+
+        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
+    }
+    private void ExecuteInitalAreaEntranceMechanic()
+    {
+        _currentRoom.GetComponent<IFunctionalArea>().ExecuteMechanicOnAreaEntrance();
     }
 }

@@ -123,7 +123,7 @@ public class GameChimpTest : MonoBehaviour, ICountableLevelMinigame, IFinishable
     {
         int points = _currentLevel * 16;
         MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(_currentLevel * 16);
-        RewardScreenManager.instance.EnableRewardScreen(points);
+        RewardScreenManager.instance.EnableRewardScreen(points, bestLevelIfPresent:_currentLevel);
 
         gameObject.SetActive(false);
     }

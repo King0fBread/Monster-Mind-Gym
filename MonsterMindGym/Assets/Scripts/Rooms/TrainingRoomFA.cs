@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class TrainingRoomFA : MonoBehaviour, IFunctionalArea
 {
-    [SerializeField] private Button _startMinigameButton;
+    [SerializeField] private GameObject _startMinigameObject;
     public void ExecuteMechanicOnAreaEntrance()
     {
-        _startMinigameButton.gameObject.SetActive(true);
+        _startMinigameObject.SetActive(true);
     }
     public void ExecuteMechanicOnAreaExit()
     {
-        _startMinigameButton.gameObject.SetActive(false);
+        _startMinigameObject.SetActive(false);
     }
 }

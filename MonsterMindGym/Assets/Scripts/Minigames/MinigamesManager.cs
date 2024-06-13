@@ -14,13 +14,13 @@ public class MinigamesManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _upcomingGameText;
 
-    [SerializeField] private Button _startButton;
+    [SerializeField] private GameObject _startMinigameObject;
 
     private GameObject _currentMinigame;
     private void Awake()
     {
-        _startButton.onClick.RemoveAllListeners();
-        _startButton.onClick.AddListener(InitiateRandomMinigame);
+        _startMinigameObject.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+        _startMinigameObject.GetComponentInChildren<Button>().onClick.AddListener(InitiateRandomMinigame);
     }
     private void InitiateRandomMinigame()
     {
@@ -30,7 +30,7 @@ public class MinigamesManager : MonoBehaviour
     }
     private void SetCurrentMinigameInstance()
     {
-        _startButton.gameObject.SetActive(false);
+        _startMinigameObject.SetActive(false);
         _getReadyScreenObject.SetActive(true);
         _currencyObject.gameObject.SetActive(false);
 
