@@ -38,6 +38,7 @@ public class CurrencyManager : MonoBehaviour
     private void SaveCurrency()
     {
         PlayerPrefs.SetInt("Coins", _coins);
+        PlayerPrefs.Save();
     }
     private void LoadCurrency()
     {
