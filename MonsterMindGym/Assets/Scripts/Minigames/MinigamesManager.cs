@@ -20,7 +20,7 @@ public class MinigamesManager : MonoBehaviour
     private void Awake()
     {
         _startMinigameObject.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
-        _startMinigameObject.GetComponentInChildren<Button>().onClick.AddListener(InitiateRandomMinigame);
+        _startMinigameObject.GetComponentInChildren<Button>().onClick.AddListener(TrySpendEnergyAndStartMinigame);
     }
     private void InitiateRandomMinigame()
     {
@@ -39,6 +39,19 @@ public class MinigamesManager : MonoBehaviour
         _upcomingGameText.text = "Upcoming game: " + _currentMinigame.name;
 
         _getReadyScreenObject.GetComponent<DisableSelfOrSpecified>().objectToToggle = _currentMinigame;
+    }
+    private void TrySpendEnergyAndStartMinigame()
+    {
+        bool hasEnoughEnergy = EnergyManager.Instance.SpendEnergy();
+        if (hasEnoughEnergy)
+        {
+            InitiateRandomMinigame();
+        }
+        else
+        {
+
+        }
+
     }
     private void FinishCurrentMinigameInstance()
     {

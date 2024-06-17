@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnergyManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class EnergyManager : MonoBehaviour
     private static EnergyManager _instance;
     public static EnergyManager Instance { get { return _instance; } }
 
+    [SerializeField] private TextMeshProUGUI _timerText;
+    [SerializeField] private TextMeshProUGUI _energyCounterText;
 
     private const string _energyRecoveryTimeInMinutesKey = "energyRecoverySpeedKey";
     private const string _maxEnergyKey = "maxEnergyKey";
@@ -32,13 +35,17 @@ public class EnergyManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        LoadEnergyData();
+        UpdateEnergyData();
+
+        InvokeRepeating("UpdateTimer", 0f, 1f);
     }
     private void Update()
     {
         UpdateEnergyData();
+        UpdateEnergyCounter();
     }
-    private void LoadEnergyDate()
+    private void LoadEnergyData()
     {
         _maxEnergy = PlayerPrefs.GetInt(_maxEnergyKey, 10);
         _energyRecoveryTimeInMinutes = PlayerPrefs.GetInt(_energyRecoveryTimeInMinutesKey, 5);
@@ -62,10 +69,40 @@ public class EnergyManager : MonoBehaviour
 
             if(minutesPassed >= _energyRecoveryTimeInMinutes)
             {
+                int energyToRecover = minutesPassed / _energyRecoveryTimeInMinutes;
+
                 _currentEnergy += 1;
-                _lastEnergyUpdate = DateTime.Now - TimeSpan.FromMinutes(minutesPassed % _energyRecoveryTimeInMinutes);
+                _lastEnergyUpdate = _lastEnergyUpdate.AddMinutes(energyToRecover * _energyRecoveryTimeInMinutes);
                 SaveEnergyData();
             }
+        }
+    }
+    private void UpdateEnergyCounter()
+    {
+        _energyCounterText.text = $"{_currentEnergy}/{_maxEnergy}";
+    }
+    private void UpdateTimer()
+    {
+        if(_currentEnergy < _maxEnergy)
+        {
+            TimeSpan timePassed = DateTime.Now - _lastEnergyUpdate;
+            int secondsPassed = (int)timePassed.TotalSeconds;
+            int secondsToNextEnergy = _energyRecoveryTimeInMinutes * 60 - secondsPassed;
+
+            if(secondsToNextEnergy <= 0)
+            {
+                UpdateEnergyData();
+                secondsToNextEnergy = _energyRecoveryTimeInMinutes * 60;
+            }
+
+            int minutes = secondsToNextEnergy / 60;
+            int seconds = secondsToNextEnergy % 60;
+
+            _timerText.text = $"{minutes:D2}:{seconds:D2}";
+        }
+        else
+        {
+            _timerText.text = " ";
         }
     }
     public bool SpendEnergy()
