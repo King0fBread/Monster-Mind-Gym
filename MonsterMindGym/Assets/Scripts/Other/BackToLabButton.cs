@@ -10,8 +10,9 @@ public class BackToLabButton : MonoBehaviour
     [SerializeField] private GameObject _minigameMenuObject;
     [SerializeField] private GameObject _backgroundObject;
 
+    [SerializeField] private PostGameBonus _postGameBonusButton;
+
     [SerializeField] private CurrencyManager _currencyManager;
-    [SerializeField] private RoomTransitionsManager _roomTransitionsManager;
     private void Awake()
     {
         GetComponent<Button>().onClick.RemoveAllListeners();
@@ -23,8 +24,9 @@ public class BackToLabButton : MonoBehaviour
         _minigameMenuObject.SetActive(false);
         _backgroundObject.SetActive(false);
 
+        _postGameBonusButton.gameObject.SetActive(true);
+
         _currencyManager.AddEarnedMinigameCoins();
 
-        _roomTransitionsManager.MoveToLeftRoom();
     }
 }

@@ -24,7 +24,7 @@ public class CurrencyManager : MonoBehaviour
     }
     public void AddCoins(int amount)
     {
-        
+        _coins += amount;
     }
     public void AddEarnedMinigameCoins()
     {
