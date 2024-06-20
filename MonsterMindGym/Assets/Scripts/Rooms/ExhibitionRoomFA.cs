@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class ExhibitionRoomFA : MonoBehaviour, IFunctionalArea
 {
-    [SerializeField] private Button _growMonsterButton;
+    [SerializeField] private GameObject _growMonsterObject;
     public void ExecuteMechanicOnAreaEntrance()
     {
         //check if conditions are met
-        _growMonsterButton.gameObject.SetActive(true);
+        _growMonsterObject.SetActive(true);
     }
     public void ExecuteMechanicOnAreaExit()
     {
-        _growMonsterButton.gameObject.SetActive(false);
+        _growMonsterObject.SetActive(false);
         
     }
 }
