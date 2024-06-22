@@ -25,23 +25,34 @@ public class CurrencyManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         _coins += amount;
+        SaveCurrency();
     }
     public void AddEarnedMinigameCoins()
     {
         _coins += MinigameRewardCalculator.instance.GetMinigameCurrencyAmount();
+        SaveCurrency();
     }
     public bool TrySpendCoins(int amount)
     {
+        if(_coins >= amount)
+        {
+            _coins -= amount;
+            SaveCurrency();
 
-        return true;
+            return true;
+        }
+        return false;
     }
     private void SaveCurrency()
     {
         PlayerPrefs.SetInt("Coins", _coins);
-        PlayerPrefs.Save();
     }
     private void LoadCurrency()
     {
-        PlayerPrefs.GetInt("Coins", 0);
+        _coins = PlayerPrefs.GetInt("Coins", 0);
+    }
+    public int GetCurrency()
+    {
+        return _coins;
     }
 }
