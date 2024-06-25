@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PassiveGenerator : MonoBehaviour
 {
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private Button _generatorButton;
+
+    [SerializeField] private TextMeshProUGUI _storageAmountText;
 
     private int _currentStatus;
     private int _currentMaxAmount;
@@ -34,7 +37,9 @@ public class PassiveGenerator : MonoBehaviour
 
         SubscribeButtonToMethod();
 
-        CalculateOfflineEarnings();
+        //CalculateOfflineEarnings();
+
+        InvokeRepeating("DisplayStorageAmount", 0, 1);
     }
     private void LoadGeneratorInfo()
     {
@@ -138,6 +143,10 @@ public class PassiveGenerator : MonoBehaviour
             int earnedWhileAway = (int)(timeAway.TotalSeconds / _currentTimeToGain);
             _currentHeldAmount = Mathf.Min(_currentHeldAmount + earnedWhileAway, _currentMaxAmount);
         }
+    }
+    private void DisplayStorageAmount()
+    {
+        _storageAmountText.text = $"{_currentHeldAmount}/{_currentMaxAmount}";
     }
     private void OnApplicationQuit()
     {
