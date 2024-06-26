@@ -10,11 +10,13 @@ public class MinigamesManager : MonoBehaviour
     [SerializeField] private GameObject _backgroundObject;
     [SerializeField] private GameObject _currencyObject;
     [SerializeField] private GameObject _getReadyScreenObject;
-    [SerializeField] private GameObject[] _minigameObjects;
+    [SerializeField] private GameObject[] _totalMinigamesObject;
 
     [SerializeField] private TextMeshProUGUI _upcomingGameText;
 
     [SerializeField] private GameObject _startMinigameObject;
+
+    private List<GameObject> _unlockedMinigamesList;
 
     private GameObject _currentMinigame;
     private void Awake()
@@ -22,9 +24,14 @@ public class MinigamesManager : MonoBehaviour
         _startMinigameObject.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
         _startMinigameObject.GetComponentInChildren<Button>().onClick.AddListener(TrySpendEnergyAndStartMinigame);
     }
+    private void LoadUnlockedMinigames()
+    {
+
+
+    }
     private void InitiateRandomMinigame()
     {
-        _currentMinigame = _minigameObjects[Random.Range(0, _minigameObjects.Length)];
+        _currentMinigame = _totalMinigamesObject[Random.Range(0, _totalMinigamesObject.Length)];
 
         SetCurrentMinigameInstance();
     }
