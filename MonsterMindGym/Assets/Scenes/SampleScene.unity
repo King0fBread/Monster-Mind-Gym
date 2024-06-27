@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 901943}
   - component: {fileID: 901945}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: ReactionTapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2304,7 +2304,7 @@ GameObject:
   - component: {fileID: 256454833}
   - component: {fileID: 256454835}
   m_Layer: 5
-  m_Name: Image
+  m_Name: AimTrainerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6244,7 +6244,17 @@ MonoBehaviour:
   _backgroundObject: {fileID: 738385132}
   _currencyObject: {fileID: 1278350003}
   _getReadyScreenObject: {fileID: 1335857464}
-  _totalMinigamesObject: []
+  _allMinigamePairs:
+  - minigameObject: {fileID: 214648773}
+    minigameIcon: {fileID: 901945}
+  - minigameObject: {fileID: 2044638146}
+    minigameIcon: {fileID: 256454835}
+  - minigameObject: {fileID: 1862977414}
+    minigameIcon: {fileID: 1934152938}
+  - minigameObject: {fileID: 43681419}
+    minigameIcon: {fileID: 1626361186}
+  - minigameObject: {fileID: 140336196}
+    minigameIcon: {fileID: 1481157991}
   _upcomingGameText: {fileID: 1498690532}
   _startMinigameObject: {fileID: 455814019}
 --- !u!1 &693987123
@@ -15409,7 +15419,7 @@ GameObject:
   - component: {fileID: 1481157989}
   - component: {fileID: 1481157991}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: ChimpTextIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17245,7 +17255,7 @@ GameObject:
   - component: {fileID: 1626361184}
   - component: {fileID: 1626361186}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: NumberMemoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21609,7 +21619,7 @@ GameObject:
   - component: {fileID: 1934152936}
   - component: {fileID: 1934152938}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: SequenceMemoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

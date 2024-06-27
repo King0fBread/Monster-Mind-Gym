@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MinigameIconsDisplayer : MonoBehaviour
+public class MinigameIcon : MonoBehaviour
 {
     private Image _iconsImage;
 
@@ -17,10 +17,14 @@ public class MinigameIconsDisplayer : MonoBehaviour
 
         _iconsImage = GetComponent<Image>();
 
-        LockByDefault();
+        LockIconByDefault();
     }
-    private void LockByDefault()
+    private void LockIconByDefault()
     {
         _iconsImage.color = _lockedColor;
+    }
+    public void UnlockIcon()
+    {
+        _iconsImage.color = _unlockedColor;
     }
 }

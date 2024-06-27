@@ -10,28 +10,53 @@ public class MinigamesManager : MonoBehaviour
     [SerializeField] private GameObject _backgroundObject;
     [SerializeField] private GameObject _currencyObject;
     [SerializeField] private GameObject _getReadyScreenObject;
-    [SerializeField] private GameObject[] _totalMinigamesObject;
+    [SerializeField] private MinigameObjectAndIconPair[] _allMinigamePairs;
 
     [SerializeField] private TextMeshProUGUI _upcomingGameText;
 
     [SerializeField] private GameObject _startMinigameObject;
 
-    private List<GameObject> _unlockedMinigamesList;
+    [System.Serializable]
+    public class MinigameObjectAndIconPair
+    {
+        public GameObject minigameObject;
+        public MinigameIcon minigameIcon;
+    }
+
+    private int _unlockedMinigamesID;
+
+    private List<GameObject> _playableMinigames;
 
     private GameObject _currentMinigame;
     private void Awake()
     {
         _startMinigameObject.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
         _startMinigameObject.GetComponentInChildren<Button>().onClick.AddListener(TrySpendEnergyAndStartMinigame);
+
+        _playableMinigames = new List<GameObject>();
+
+        _unlockedMinigamesID = PlayerPrefs.GetInt("UnlockedMinigamesID", 0);
+
     }
-    private void LoadUnlockedMinigames()
+    private void Start()
     {
+        CalculateUnlockedMinigames();
+    }
+    private void CalculateUnlockedMinigames()
+    {
+        for(int i = 0; i <= _allMinigamePairs.Length-1; i++)
+        {
+            if(_unlockedMinigamesID >= i)
+            {
+                _allMinigamePairs[i].minigameIcon.UnlockIcon();
 
-
+                _playableMinigames.Add(_allMinigamePairs[i].minigameObject);
+            }
+        }
     }
     private void InitiateRandomMinigame()
     {
-        _currentMinigame = _totalMinigamesObject[Random.Range(0, _totalMinigamesObject.Length)];
+        _currentMinigame = _playableMinigames[Random.Range(0, _playableMinigames.Count)];
 
         SetCurrentMinigameInstance();
     }
@@ -67,5 +92,13 @@ public class MinigamesManager : MonoBehaviour
 
         _currentMinigame = null;
         _currentMinigame.SetActive(false);
+    }
+    public void UnlockNextMinigame()
+    {
+        _unlockedMinigamesID++;
+        PlayerPrefs.SetInt("UnlockedMinigamesID", _unlockedMinigamesID);
+
+        CalculateUnlockedMinigames();
+
     }
 }
