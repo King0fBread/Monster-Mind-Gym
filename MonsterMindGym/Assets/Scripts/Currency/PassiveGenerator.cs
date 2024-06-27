@@ -11,8 +11,11 @@ using UnityEngine.UI;
 public class PassiveGenerator : MonoBehaviour
 {
     [SerializeField] private CurrencyManager _currencyManager;
-    [SerializeField] private Button _generatorButton;
 
+    [SerializeField] private Button _generatorButton;
+    [SerializeField] private Button _claimButton;
+
+    [SerializeField] private TextMeshProUGUI _priceDisplayText;
     [SerializeField] private TextMeshProUGUI _storageAmountText;
 
     private int _currentStatus;
@@ -35,11 +38,15 @@ public class PassiveGenerator : MonoBehaviour
     {
         LoadGeneratorInfo();
 
-        SubscribeButtonToMethod();
+        SubscribeGeneratorButton();
+        SubscribeClaimButton();
 
-        //CalculateOfflineEarnings();
+        CalculateOfflineEarnings();
+
+        DisplayCurrentPrice();
 
         InvokeRepeating("DisplayStorageAmount", 0, 1);
+
     }
     private void LoadGeneratorInfo()
     {
@@ -58,8 +65,9 @@ public class PassiveGenerator : MonoBehaviour
     {
         PlayerPrefs.SetString("LastClosedTime", DateTime.Now.ToString());
     }
-    private void SubscribeButtonToMethod()
+    private void SubscribeGeneratorButton()
     {
+
         if(_currentStatus == 0)
         {
             _generatorButton.onClick.RemoveAllListeners();
@@ -69,7 +77,14 @@ public class PassiveGenerator : MonoBehaviour
         {
             _generatorButton.onClick.RemoveAllListeners();
             _generatorButton.onClick.AddListener(UpgradeGenerator);
+
+            _generatorButton.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "Upgrade generator";
         }
+    }
+    private void SubscribeClaimButton()
+    {
+        _claimButton.onClick.RemoveAllListeners();
+        _claimButton.onClick.AddListener(ClaimHeldCurrency);
     }
     private void Update()
     {
@@ -93,7 +108,7 @@ public class PassiveGenerator : MonoBehaviour
             _currentMaxAmount = _generatorStages[0].maxAmount;
 
             SaveGeneratorInfo();
-            SubscribeButtonToMethod();
+            SubscribeGeneratorButton();
         }
         else
         {
@@ -131,6 +146,16 @@ public class PassiveGenerator : MonoBehaviour
             return false;
         }
     }
+    private void ClaimHeldCurrency()
+    {
+        if(_currentHeldAmount > 0)
+        {
+            _currencyManager.AddCoins(_currentHeldAmount);
+            _currentHeldAmount = 0;
+
+            SaveGeneratorInfo();
+        }
+    }
     private void CalculateOfflineEarnings()
     {
         string lastClosedTimeString = PlayerPrefs.GetString("LastClosedTime", string.Empty);
@@ -141,12 +166,24 @@ public class PassiveGenerator : MonoBehaviour
             TimeSpan timeAway = DateTime.Now - lastClosedTime;
 
             int earnedWhileAway = (int)(timeAway.TotalSeconds / _currentTimeToGain);
-            _currentHeldAmount = Mathf.Min(_currentHeldAmount + earnedWhileAway, _currentMaxAmount);
+
+            if(earnedWhileAway + _currentHeldAmount >= _currentMaxAmount)
+            {
+                _currentHeldAmount = _currentMaxAmount;
+            }
+            else
+            {
+                _currentHeldAmount += earnedWhileAway;
+            }
         }
     }
     private void DisplayStorageAmount()
     {
         _storageAmountText.text = $"{_currentHeldAmount}/{_currentMaxAmount}";
+    }
+    private void DisplayCurrentPrice()
+    {
+        _priceDisplayText.text = _generatorStages[_currentStatus].price.ToString();
     }
     private void OnApplicationQuit()
     {
