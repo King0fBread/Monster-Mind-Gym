@@ -18,6 +18,9 @@ public class PassiveGenerator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _priceDisplayText;
     [SerializeField] private TextMeshProUGUI _storageAmountText;
 
+    [SerializeField] private TextMeshProUGUI _coinPerSecondsText;
+    [SerializeField] private TextMeshProUGUI _maxAmountText;
+
     private int _currentStatus;
     private int _currentMaxAmount;
     private int _currentHeldAmount;
@@ -45,7 +48,7 @@ public class PassiveGenerator : MonoBehaviour
 
         DisplayCurrentPrice();
 
-        InvokeRepeating("DisplayStorageAmount", 0, 1);
+        InvokeRepeating("DisplayGeneratorInfo", 0, 1);
 
     }
     private void LoadGeneratorInfo()
@@ -177,9 +180,11 @@ public class PassiveGenerator : MonoBehaviour
             }
         }
     }
-    private void DisplayStorageAmount()
+    private void DisplayGeneratorInfo()
     {
         _storageAmountText.text = $"{_currentHeldAmount}/{_currentMaxAmount}";
+        _coinPerSecondsText.text = $"1/{_currentTimeToGain}s";
+        _maxAmountText.text = $"max {_currentMaxAmount}";
     }
     private void DisplayCurrentPrice()
     {

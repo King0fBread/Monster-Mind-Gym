@@ -7,6 +7,9 @@ public class PostGameBonus : MonoBehaviour
 {
     [SerializeField] private CurrencyManager _currencyManager;
     [SerializeField] private int _increaseRate;
+
+    [SerializeField] private GameObject _trainObject;
+
     private int _bonusAmount;
     
     private void Awake()
@@ -23,6 +26,8 @@ public class PostGameBonus : MonoBehaviour
     private void ClaimBonus()
     {
         _currencyManager.AddCoins(_bonusAmount);
+
+        _trainObject.SetActive(true);
         gameObject.SetActive(false);
     }
     public void IncreaseBonusAmount()
