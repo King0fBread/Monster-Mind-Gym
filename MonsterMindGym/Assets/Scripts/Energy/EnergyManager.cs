@@ -18,8 +18,8 @@ public class EnergyManager : MonoBehaviour
     private const string _lastEnergyUpdateKey = "lastEnergyUpdate";
 
     private int _maxEnergy;
-    private int _energyRecoveryTimeInMinutes;
     private int _currentEnergy;
+    private float _energyRecoveryTimeInMinutes;
     private DateTime _lastEnergyUpdate;
 
     private void Awake()
@@ -48,7 +48,7 @@ public class EnergyManager : MonoBehaviour
     private void LoadEnergyData()
     {
         _maxEnergy = PlayerPrefs.GetInt(_maxEnergyKey, 10);
-        _energyRecoveryTimeInMinutes = PlayerPrefs.GetInt(_energyRecoveryTimeInMinutesKey, 5);
+        _energyRecoveryTimeInMinutes = float.Parse(PlayerPrefs.GetString(_energyRecoveryTimeInMinutesKey, "5"));
         _currentEnergy = PlayerPrefs.GetInt(_currentEnergyKey, _maxEnergy);
 
         string lastEnergyUpdateString = PlayerPrefs.GetString(_lastEnergyUpdateKey, DateTime.Now.ToString());
@@ -69,7 +69,7 @@ public class EnergyManager : MonoBehaviour
 
             if(minutesPassed >= _energyRecoveryTimeInMinutes)
             {
-                int energyToRecover = minutesPassed / _energyRecoveryTimeInMinutes;
+                int energyToRecover = Convert.ToInt32(minutesPassed / _energyRecoveryTimeInMinutes);
 
                 _currentEnergy += 1;
                 _lastEnergyUpdate = _lastEnergyUpdate.AddMinutes(energyToRecover * _energyRecoveryTimeInMinutes);
@@ -87,12 +87,12 @@ public class EnergyManager : MonoBehaviour
         {
             TimeSpan timePassed = DateTime.Now - _lastEnergyUpdate;
             int secondsPassed = (int)timePassed.TotalSeconds;
-            int secondsToNextEnergy = _energyRecoveryTimeInMinutes * 60 - secondsPassed;
+            int secondsToNextEnergy = (int)_energyRecoveryTimeInMinutes * 60 - secondsPassed;
 
             if(secondsToNextEnergy <= 0)
             {
                 UpdateEnergyData();
-                secondsToNextEnergy = _energyRecoveryTimeInMinutes * 60;
+                secondsToNextEnergy = (int)_energyRecoveryTimeInMinutes * 60;
             }
 
             int minutes = secondsToNextEnergy / 60;
@@ -118,6 +118,17 @@ public class EnergyManager : MonoBehaviour
         {
             return false;
         }
+    }
+    public void UprgadeMaxEnergyAmount()
+    {
+        _maxEnergy += 1;
+        PlayerPrefs.SetInt(_maxEnergyKey, _maxEnergy);
+    }
+    public void UpgradeEnergyRecovery()
+    {
+        _energyRecoveryTimeInMinutes -= 0.5f;
+        string energyRecoveryString = _energyRecoveryTimeInMinutes.ToString("0.0");
+        PlayerPrefs.SetString(_energyRecoveryTimeInMinutesKey, energyRecoveryString);
     }
 
 }
