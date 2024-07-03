@@ -16,17 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1d6072d825316c04e82772a7984e80cb
-  m_SerializeEntries:
-  - m_GUID: Resources
-    m_Address: '*/Resources/'
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: EditorSceneList
-    m_Address: Scenes In Build
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: d60c061e4770cb84084459350f0d6935, type: 2}
   m_SchemaSet:
