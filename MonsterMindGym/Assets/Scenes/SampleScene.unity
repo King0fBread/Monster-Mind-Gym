@@ -6339,12 +6339,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17722705ff34f9546988dfc459e1d68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterEvoluitionStages: []
+  _monsterEvoluitionStages:
+  - {fileID: 21300000, guid: e4100a5df89933b4e92252552b183e63, type: 3}
+  - {fileID: 21300000, guid: 5d5082e9920da7943b56a15fa504bf8f, type: 3}
+  - {fileID: 21300000, guid: 7dfd823283d73e54a8c168fa981ef7ff, type: 3}
+  - {fileID: 21300000, guid: 8338ea1df640d7c41a0d28e6d62a71f7, type: 3}
+  - {fileID: 21300000, guid: 8cc245f85e5b11a4887a712260804f82, type: 3}
+  - {fileID: 21300000, guid: cf12f68f3d5edf74e9ce41c30018c2f5, type: 3}
+  - {fileID: 21300000, guid: 3b4695dd02596d947a0425811a4169f3, type: 3}
+  - {fileID: 21300000, guid: fe0a1a05294df86449c19fa7fd76cf2f, type: 3}
+  - {fileID: 21300000, guid: c5804e6f12b4e7c468670bc70acf4ddf, type: 3}
   _currencyManager: {fileID: 815371904}
   _currentLevelText: {fileID: 615234599}
   _bonusTipText: {fileID: 1555566583}
   _upgradeButton: {fileID: 870774357}
-  _levelAddresses: []
+  _levelsGroupLabel: LevelsGroup
 --- !u!1 &659261394
 GameObject:
   m_ObjectHideFlags: 0

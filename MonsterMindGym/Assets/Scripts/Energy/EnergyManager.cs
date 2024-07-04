@@ -119,7 +119,7 @@ public class EnergyManager : MonoBehaviour
             return false;
         }
     }
-    public void UprgadeMaxEnergyAmount()
+    public void UpgradeMaxEnergyAmount()
     {
         _maxEnergy += 1;
         PlayerPrefs.SetInt(_maxEnergyKey, _maxEnergy);
