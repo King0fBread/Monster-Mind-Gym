@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d501657ab1ddc04e843ee74cad1c1e7, type: 3}
   m_Name: Level_60
   m_EditorClassIdentifier: 
-  level: 59
+  level: 60
   upgradeCost: 6000
   maxEnergyIncrease: 0
   energyRecoveryDecrease: 0.5

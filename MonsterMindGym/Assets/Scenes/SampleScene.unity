@@ -6354,6 +6354,9 @@ MonoBehaviour:
   _bonusTipText: {fileID: 1555566583}
   _upgradeButton: {fileID: 870774357}
   _levelsGroupLabel: LevelsGroup
+  _postGameBonus: {fileID: 2137188466}
+  _minigameManager: {fileID: 673429188}
+  _monsterSpriteRenderer: {fileID: 1595402605}
 --- !u!1 &659261394
 GameObject:
   m_ObjectHideFlags: 0

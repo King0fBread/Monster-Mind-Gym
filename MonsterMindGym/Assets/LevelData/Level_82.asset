@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d501657ab1ddc04e843ee74cad1c1e7, type: 3}
   m_Name: Level_82
   m_EditorClassIdentifier: 
-  level: 81
+  level: 82
   upgradeCost: 8200
   maxEnergyIncrease: 0
   energyRecoveryDecrease: 0
   unlockNextMinigame: 0
   increasePostMinigameBonus: 0
+  visuallyUpgradeMonster: 0

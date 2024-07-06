@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -28,8 +29,10 @@ public class MonsterUpgradeManager : MonoBehaviour
     //[SerializeField] List<string> _levelAddresses;
 
     private AsyncOperationHandle<LevelData>? _currentLevelHandle;
+    private AsyncOperationHandle<LevelData>? _requestedLevelHandle;
 
     private LevelData _currentLevelData;
+    private LevelData _requestedLevelData;
 
     private int _currentMonsterLevel;
 
@@ -61,7 +64,6 @@ public class MonsterUpgradeManager : MonoBehaviour
     }
     private void LoadCurrentLevel()
     {
-
         if (_currentLevelHandle.HasValue)
         {
             Addressables.Release(_currentLevelHandle.Value);
@@ -91,14 +93,13 @@ public class MonsterUpgradeManager : MonoBehaviour
 
             IList<IResourceLocation> locations = handle.Result;
             _totalLevelsCount = locations.Count;
-            print("total lvls " + _totalLevelsCount);
         }
     }
     private void DisplayLevelInfo()
     {
         _currentLevelText.text = $"Level {_currentLevelData.level}";
-        _bonusTipText.text = "Bonus TODO";
-        
+
+        StartCoroutine(CheckNextBonusLevel(_currentMonsterLevel));
     }
     private void DisplayMonsterVisual()
     {
@@ -151,6 +152,46 @@ public class MonsterUpgradeManager : MonoBehaviour
             PlayerPrefs.SetInt("MonsterVisualID", _currentVisualMonsterID);
             DisplayMonsterVisual();
         }
+        //notification about the bonus
+    }
+    private IEnumerator CheckNextBonusLevel(int currentLevel)
+    {
+        for (int i = 1; i < _totalLevelsCount; i++)
+        {
+            var handle = Addressables.LoadAssetAsync<LevelData>($"Level_{currentLevel + i}");
+            yield return handle;
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                LevelData levelData = handle.Result;
+                if (RequestedLevelHasUpgrades(levelData))
+                {
+                    _bonusTipText.text = $"Upgrade in {i} levels";
+                    Addressables.Release(handle);
+                    yield break;
+                }
+                Addressables.Release(handle);
+            }
+            else
+            {
+                Debug.LogError($"Failed to load LevelData: {handle.Status}");
+            }
+        }
+
+        _bonusTipText.text = "No more upgrades available.";
+    }
+    private bool RequestedLevelHasUpgrades(LevelData requestedLevelData)
+    {
+        if (requestedLevelData.maxEnergyIncrease != 0)
+            return true;
+        if (requestedLevelData.energyRecoveryDecrease != 0)
+            return true;
+        if (requestedLevelData.unlockNextMinigame)
+            return true;
+        if (requestedLevelData.visuallyUpgradeMonster)
+            return true;
+
+        return false;
     }
 
 
