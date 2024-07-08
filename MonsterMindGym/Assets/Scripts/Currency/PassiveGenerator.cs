@@ -21,6 +21,8 @@ public class PassiveGenerator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinPerSecondsText;
     [SerializeField] private TextMeshProUGUI _maxAmountText;
 
+    [SerializeField] private GameObject _generatorBuyObject;
+
     private int _currentStatus;
     private int _currentMaxAmount;
     private int _currentHeldAmount;
@@ -39,6 +41,7 @@ public class PassiveGenerator : MonoBehaviour
     }
     private void Awake()
     {
+        PlayerPrefs.SetInt("ButtonStatus", 0);
         LoadGeneratorInfo();
 
         SubscribeGeneratorButton();
@@ -46,9 +49,7 @@ public class PassiveGenerator : MonoBehaviour
 
         CalculateOfflineEarnings();
 
-        DisplayCurrentPrice();
-
-        InvokeRepeating("DisplayGeneratorInfo", 0, 1);
+        InvokeRepeating("DisplayGeneratorInfo", 1, 1);
 
     }
     private void LoadGeneratorInfo()
@@ -56,6 +57,10 @@ public class PassiveGenerator : MonoBehaviour
         _currentStatus = PlayerPrefs.GetInt("ButtonStatus", 0);
         _currentHeldAmount = PlayerPrefs.GetInt("HeldAmount", 0);
 
+        if (_currentStatus == _generatorStages.Length - 1)
+        {
+            _generatorBuyObject.SetActive(false);
+        }
         _currentMaxAmount = _generatorStages[_currentStatus].maxAmount;
         _currentTimeToGain = _generatorStages[_currentStatus].secondsToGainCurrency;
     }
@@ -107,8 +112,8 @@ public class PassiveGenerator : MonoBehaviour
         if (TryPurchaseGenerator())
         {
             _currentStatus = 1;
-            _currentTimeToGain = _generatorStages[0].secondsToGainCurrency;
-            _currentMaxAmount = _generatorStages[0].maxAmount;
+            _currentTimeToGain = _generatorStages[_currentStatus].secondsToGainCurrency;
+            _currentMaxAmount = _generatorStages[_currentStatus].maxAmount;
 
             SaveGeneratorInfo();
             SubscribeGeneratorButton();
@@ -133,19 +138,25 @@ public class PassiveGenerator : MonoBehaviour
                 SaveGeneratorInfo();
             }
         }
-        else
-        {
-            print("not enough for upgrade");
-        }
     }
     private bool TryPurchaseGenerator()
     {
-        if (_currencyManager.TrySpendCoins(_generatorStages[_currentStatus].price))
+        if(_currentStatus < _generatorStages.Length-1)
         {
-            return true;
+            if (_currencyManager.TrySpendCoins(_generatorStages[_currentStatus].price))
+            {
+                return true;
+            }
+            else
+            {
+                print("not enough for upgrade");
+                return false;
+            }
         }
         else
         {
+            print("max level generator");
+            _generatorBuyObject.SetActive(false);
             return false;
         }
     }
@@ -185,9 +196,6 @@ public class PassiveGenerator : MonoBehaviour
         _storageAmountText.text = $"{_currentHeldAmount}/{_currentMaxAmount}";
         _coinPerSecondsText.text = $"1/{_currentTimeToGain}s";
         _maxAmountText.text = $"max {_currentMaxAmount}";
-    }
-    private void DisplayCurrentPrice()
-    {
         _priceDisplayText.text = _generatorStages[_currentStatus].price.ToString();
     }
     private void OnApplicationQuit()

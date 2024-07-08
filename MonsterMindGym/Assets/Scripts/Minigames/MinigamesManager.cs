@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class MinigamesManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _backgroundObject;
-    [SerializeField] private GameObject _currencyObject;
     [SerializeField] private GameObject _getReadyScreenObject;
+    [SerializeField] private GameObject _backgroundObject;
+
+    [SerializeField] private GameObject[] _staticUIObjectsToToggle;
+
     [SerializeField] private MinigameObjectAndIconPair[] _allMinigamePairs;
 
     [SerializeField] private TextMeshProUGUI _upcomingGameText;
@@ -63,14 +65,22 @@ public class MinigamesManager : MonoBehaviour
     private void SetCurrentMinigameInstance()
     {
         _startMinigameObject.SetActive(false);
-        _getReadyScreenObject.SetActive(true);
-        _currencyObject.gameObject.SetActive(false);
 
-        _backgroundObject.gameObject.SetActive(true);
+        _backgroundObject.SetActive(true);
+        _getReadyScreenObject.SetActive(true);
+
+        ToggleStaticUIObjects(false);
 
         _upcomingGameText.text = "Upcoming game: " + _currentMinigame.name;
 
         _getReadyScreenObject.GetComponent<DisableSelfOrSpecified>().objectToToggle = _currentMinigame;
+    }
+    public void ToggleStaticUIObjects(bool activeState)
+    {
+        foreach(var obj in _staticUIObjectsToToggle)
+        {
+            obj.SetActive(activeState);
+        }
     }
     private void TrySpendEnergyAndStartMinigame()
     {
@@ -87,8 +97,7 @@ public class MinigamesManager : MonoBehaviour
     }
     private void FinishCurrentMinigameInstance()
     {
-        _currencyObject.gameObject.SetActive(true);
-        _backgroundObject.gameObject.SetActive(false);
+        ToggleStaticUIObjects(true);
 
         _currentMinigame = null;
         _currentMinigame.SetActive(false);

@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class BackToLabButton : MonoBehaviour
 {
-    [SerializeField] private GameObject _currencyObject;
     [SerializeField] private GameObject _minigameMenuObject;
     [SerializeField] private GameObject _backgroundObject;
 
-    [SerializeField] private PostGameBonus _postGameBonusButton;
+    [SerializeField] private MinigamesManager _minigamesManager;
 
+    [SerializeField] private PostGameBonus _postGameBonusButton;
     [SerializeField] private CurrencyManager _currencyManager;
+
     private void Awake()
     {
         GetComponent<Button>().onClick.RemoveAllListeners();
@@ -20,10 +21,10 @@ public class BackToLabButton : MonoBehaviour
     }
     private void PerformBackToLabSequence()
     {
-        _currencyObject.SetActive(true);
+        _minigamesManager.ToggleStaticUIObjects(true);
+
         _minigameMenuObject.SetActive(false);
         _backgroundObject.SetActive(false);
-
         _postGameBonusButton.gameObject.SetActive(true);
 
         _currencyManager.AddEarnedMinigameCoins();
