@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.XPath;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -39,6 +40,14 @@ public class PlayerTouchManager : MonoBehaviour
         var results = new List<RaycastResult>();
         _graphicRaycaster.Raycast(pointerEventData, results);
 
-        print(results[0]);
+        HandleElixirCrateClick(results[0]);
+    }
+    private void HandleElixirCrateClick(RaycastResult result)
+    {
+
+        if(result.gameObject.tag == "ElixirCrate")
+        {
+            result.gameObject.GetComponentInParent<ElixirSlot>().PickElixir();
+        }
     }
 }

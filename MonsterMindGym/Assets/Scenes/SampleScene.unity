@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 22733456}
   - component: {fileID: 22733458}
   - component: {fileID: 22733457}
+  - component: {fileID: 22733459}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -423,6 +424,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22733455}
   m_CullTransparentMesh: 1
+--- !u!114 &22733459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22733455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &32744666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3622,7 +3635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.8, y: 0}
+  m_AnchoredPosition: {x: -44.1, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &355300523
@@ -3902,6 +3915,7 @@ GameObject:
   - component: {fileID: 375018019}
   - component: {fileID: 375018021}
   - component: {fileID: 375018020}
+  - component: {fileID: 375018022}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -3968,6 +3982,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375018018}
   m_CullTransparentMesh: 1
+--- !u!114 &375018022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375018018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &381626624
 GameObject:
   m_ObjectHideFlags: 0
@@ -4561,8 +4587,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 61.13
+  m_fontSizeBase: 61.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6372,6 +6398,7 @@ GameObject:
   - component: {fileID: 637471507}
   - component: {fileID: 637471509}
   - component: {fileID: 637471508}
+  - component: {fileID: 637471510}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -6438,6 +6465,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637471506}
   m_CullTransparentMesh: 1
+--- !u!114 &637471510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637471506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &646911637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6645,6 +6684,7 @@ GameObject:
   - component: {fileID: 659261395}
   - component: {fileID: 659261397}
   - component: {fileID: 659261396}
+  - component: {fileID: 659261398}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -6711,6 +6751,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659261394}
   m_CullTransparentMesh: 1
+--- !u!114 &659261398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659261394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &673429186
 GameObject:
   m_ObjectHideFlags: 0
@@ -7608,6 +7660,7 @@ GameObject:
   - component: {fileID: 736822952}
   - component: {fileID: 736822954}
   - component: {fileID: 736822953}
+  - component: {fileID: 736822955}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -7674,6 +7727,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736822951}
   m_CullTransparentMesh: 1
+--- !u!114 &736822955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736822951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737604555
 GameObject:
   m_ObjectHideFlags: 0
@@ -7916,6 +7981,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adblockObject: {fileID: 1977703253}
+  _elixirSlots:
+  - {fileID: 637471510}
+  - {fileID: 1150446678}
+  - {fileID: 659261398}
+  - {fileID: 375018022}
+  - {fileID: 1964923468}
+  - {fileID: 1995802375}
+  - {fileID: 759575585}
+  - {fileID: 736822955}
+  - {fileID: 22733459}
 --- !u!1 &759575581
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,6 +8002,7 @@ GameObject:
   - component: {fileID: 759575582}
   - component: {fileID: 759575584}
   - component: {fileID: 759575583}
+  - component: {fileID: 759575585}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -7993,6 +8069,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759575581}
   m_CullTransparentMesh: 1
+--- !u!114 &759575585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759575581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761761488
 GameObject:
   m_ObjectHideFlags: 0
@@ -13480,6 +13568,7 @@ GameObject:
   - component: {fileID: 1150446675}
   - component: {fileID: 1150446677}
   - component: {fileID: 1150446676}
+  - component: {fileID: 1150446678}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -13546,6 +13635,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150446674}
   m_CullTransparentMesh: 1
+--- !u!114 &1150446678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150446674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1157214087
 GameObject:
   m_ObjectHideFlags: 0
@@ -15316,8 +15417,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 61.13
+  m_fontSizeBase: 61.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20467,8 +20568,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 61.13
+  m_fontSizeBase: 61.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20747,7 +20848,6 @@ GameObject:
   - component: {fileID: 1784242593}
   - component: {fileID: 1784242592}
   - component: {fileID: 1784242591}
-  - component: {fileID: 1784242596}
   - component: {fileID: 1784242595}
   m_Layer: 5
   m_Name: MainCanvas
@@ -20865,21 +20965,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1784242596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784242590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!1 &1787797651
 GameObject:
   m_ObjectHideFlags: 0
@@ -23157,6 +23242,7 @@ GameObject:
   - component: {fileID: 1964923465}
   - component: {fileID: 1964923467}
   - component: {fileID: 1964923466}
+  - component: {fileID: 1964923468}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -23223,6 +23309,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964923464}
   m_CullTransparentMesh: 1
+--- !u!114 &1964923468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964923464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1966338285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966338286}
+  - component: {fileID: 1966338287}
+  m_Layer: 0
+  m_Name: PlayerTouchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1966338286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966338285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1986716763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1966338287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966338285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf6aded1223219448237d10af1ca0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _screenSizeUICanvas: {fileID: 1784242593}
+  _eventSystem: {fileID: 491539142}
 --- !u!1 &1975011113
 GameObject:
   m_ObjectHideFlags: 0
@@ -23582,6 +23729,7 @@ Transform:
   - {fileID: 357416482}
   - {fileID: 1912962166}
   - {fileID: 649403400}
+  - {fileID: 1966338286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1989626448
@@ -23745,6 +23893,7 @@ GameObject:
   - component: {fileID: 1995802372}
   - component: {fileID: 1995802374}
   - component: {fileID: 1995802373}
+  - component: {fileID: 1995802375}
   m_Layer: 5
   m_Name: ElixirSlot
   m_TagString: Untagged
@@ -23811,6 +23960,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995802371}
   m_CullTransparentMesh: 1
+--- !u!114 &1995802375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995802371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2017237109
 GameObject:
   m_ObjectHideFlags: 0
@@ -24915,8 +25076,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 61.13
+  m_fontSizeBase: 61.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
