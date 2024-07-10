@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,6 +19,22 @@ public class ElixirsManager : MonoBehaviour
     private Dictionary<ElixirColors, Sprite> _colorToSpriteMap;
 
     private List<ElixirColors> _availableElixirColors;
+
+    private bool _hasClaimedElixir;
+
+    public static ElixirsManager Instance { get { return _instance; } }
+    private static ElixirsManager _instance;
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     private void OnEnable()
     {
@@ -57,6 +75,36 @@ public class ElixirsManager : MonoBehaviour
         {
             ElixirColors color = _availableElixirColors[i];
             _elixirSlots[i].SetCurrentElixirColor(color, _colorToSpriteMap[color]);
+        }
+    }
+    public void ApplyPickedElixir(ElixirColors elixirColor)
+    {
+        if (_hasClaimedElixir)
+        {
+            //has claimed
+        }
+
+        foreach(var slot in _elixirSlots)
+        {
+            slot.HideCrate();
+        }
+        MinigameRewardCalculator.instance.CalculateElixirMultipliedCurrency(GetMultiplier(elixirColor));
+        //apply
+    }
+    private int GetMultiplier(ElixirColors elixirColor)
+    {
+        switch (elixirColor)
+        {
+            case ElixirColors.Gray:
+                return 1;
+            case ElixirColors.Blue:
+                return 2;
+            case ElixirColors.Red:
+                return 3;
+            case ElixirColors.Yellow:
+                return 4;
+            default:
+                return 1;
         }
     }
 }

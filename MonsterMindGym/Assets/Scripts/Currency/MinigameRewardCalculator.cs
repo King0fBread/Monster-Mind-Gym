@@ -28,8 +28,10 @@ public class MinigameRewardCalculator : MonoBehaviour
     }
     public void CalculateElixirMultipliedCurrency(float multiplier)
     {
-        float _modifiedCurrencyPrecise = _currencyAmount + multiplier;
+        float _modifiedCurrencyPrecise = _currencyAmount * multiplier;
         _currencyAmount = Convert.ToInt32(_modifiedCurrencyPrecise);
+
+        RewardScreenManager.instance.DisplayMultipliedPoints(_currencyAmount);
     }
     public int GetMinigameCurrencyAmount()
     {

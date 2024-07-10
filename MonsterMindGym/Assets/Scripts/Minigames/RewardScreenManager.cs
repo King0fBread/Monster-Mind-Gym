@@ -38,4 +38,8 @@ public class RewardScreenManager : MonoBehaviour
 
         _elixirsManager.gameObject.SetActive(true);
     }
+    public void DisplayMultipliedPoints(int earnedPoints)
+    {
+        _pointsValueText.text = earnedPoints.ToString();
+    }
 }

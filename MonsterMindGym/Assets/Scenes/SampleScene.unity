@@ -436,6 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 299363890}
+  _crateImage: {fileID: 1694042438}
 --- !u!1 &32744666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,9 +3722,10 @@ GameObject:
   - component: {fileID: 357536506}
   - component: {fileID: 357536508}
   - component: {fileID: 357536507}
+  - component: {fileID: 357536509}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3784,6 +3787,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357536505}
   m_CullTransparentMesh: 1
+--- !u!95 &357536509
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357536505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &368788001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,6 +4018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 1660951567}
+  _crateImage: {fileID: 789120633}
 --- !u!1 &381626624
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,6 +6503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 591980669}
+  _crateImage: {fileID: 1371539762}
 --- !u!1 &646911637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6763,6 +6791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 182375937}
+  _crateImage: {fileID: 1993085010}
 --- !u!1 &673429186
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,9 +7010,10 @@ GameObject:
   - component: {fileID: 704424417}
   - component: {fileID: 704424419}
   - component: {fileID: 704424418}
+  - component: {fileID: 704424420}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7044,6 +7075,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704424416}
   m_CullTransparentMesh: 1
+--- !u!95 &704424420
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704424416}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &724131382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7739,6 +7791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 90384053}
+  _crateImage: {fileID: 704424418}
 --- !u!1 &737604555
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,6 +8045,10 @@ MonoBehaviour:
   - {fileID: 759575585}
   - {fileID: 736822955}
   - {fileID: 22733459}
+  _graySprite: {fileID: 21300000, guid: 2d5c9d0afd2c26d4aabf9f1be0a19336, type: 3}
+  _blueSprite: {fileID: 21300000, guid: 4a4f0a1d90c5bf14bb33a02b33408a54, type: 3}
+  _redSprite: {fileID: 21300000, guid: ab7cd95bbc28a0640a2046167daa0a60, type: 3}
+  _yellowSprite: {fileID: 21300000, guid: 40e4000b38476554e8846ce5a17d67d1, type: 3}
 --- !u!1 &759575581
 GameObject:
   m_ObjectHideFlags: 0
@@ -8081,6 +8139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 831312427}
+  _crateImage: {fileID: 2104739793}
 --- !u!1 &761761488
 GameObject:
   m_ObjectHideFlags: 0
@@ -8795,9 +8855,10 @@ GameObject:
   - component: {fileID: 789120632}
   - component: {fileID: 789120634}
   - component: {fileID: 789120633}
+  - component: {fileID: 789120635}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8859,6 +8920,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789120631}
   m_CullTransparentMesh: 1
+--- !u!95 &789120635
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789120631}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &792171674
 GameObject:
   m_ObjectHideFlags: 0
@@ -12338,9 +12420,10 @@ GameObject:
   - component: {fileID: 1036335250}
   - component: {fileID: 1036335252}
   - component: {fileID: 1036335251}
+  - component: {fileID: 1036335253}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12402,6 +12485,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036335249}
   m_CullTransparentMesh: 1
+--- !u!95 &1036335253
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036335249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1043230781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13647,6 +13751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 1594972317}
+  _crateImage: {fileID: 357536507}
 --- !u!1 &1157214087
 GameObject:
   m_ObjectHideFlags: 0
@@ -15232,9 +15338,10 @@ GameObject:
   - component: {fileID: 1371539761}
   - component: {fileID: 1371539763}
   - component: {fileID: 1371539762}
+  - component: {fileID: 1371539764}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15296,6 +15403,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371539760}
   m_CullTransparentMesh: 1
+--- !u!95 &1371539764
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371539760}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1375923168
 GameObject:
   m_ObjectHideFlags: 0
@@ -19173,9 +19301,10 @@ GameObject:
   - component: {fileID: 1694042437}
   - component: {fileID: 1694042439}
   - component: {fileID: 1694042438}
+  - component: {fileID: 1694042440}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19237,6 +19366,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694042436}
   m_CullTransparentMesh: 1
+--- !u!95 &1694042440
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694042436}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1695943632
 GameObject:
   m_ObjectHideFlags: 0
@@ -23321,6 +23471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 1644361126}
+  _crateImage: {fileID: 1989626450}
 --- !u!1 &1966338285
 GameObject:
   m_ObjectHideFlags: 0
@@ -23743,9 +23895,10 @@ GameObject:
   - component: {fileID: 1989626449}
   - component: {fileID: 1989626451}
   - component: {fileID: 1989626450}
+  - component: {fileID: 1989626452}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23807,6 +23960,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989626448}
   m_CullTransparentMesh: 1
+--- !u!95 &1989626452
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989626448}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1993085008
 GameObject:
   m_ObjectHideFlags: 0
@@ -23818,9 +23992,10 @@ GameObject:
   - component: {fileID: 1993085009}
   - component: {fileID: 1993085011}
   - component: {fileID: 1993085010}
+  - component: {fileID: 1993085012}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23882,6 +24057,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993085008}
   m_CullTransparentMesh: 1
+--- !u!95 &1993085012
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993085008}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1995802371
 GameObject:
   m_ObjectHideFlags: 0
@@ -23972,6 +24168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0aee7af3eb68347a2403eedca03539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elixirImage: {fileID: 1787797654}
+  _crateImage: {fileID: 1036335251}
 --- !u!1 &2017237109
 GameObject:
   m_ObjectHideFlags: 0
@@ -24794,9 +24992,10 @@ GameObject:
   - component: {fileID: 2104739792}
   - component: {fileID: 2104739794}
   - component: {fileID: 2104739793}
+  - component: {fileID: 2104739795}
   m_Layer: 5
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: ElixirCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24858,6 +25057,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104739791}
   m_CullTransparentMesh: 1
+--- !u!95 &2104739795
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104739791}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6237c5dc2ed48c240a045580278cfc8e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2108695348
 GameObject:
   m_ObjectHideFlags: 0
