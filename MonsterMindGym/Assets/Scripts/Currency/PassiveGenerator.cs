@@ -25,7 +25,7 @@ public class PassiveGenerator : MonoBehaviour
 
     private int _currentStatus;
     private int _currentMaxAmount;
-    private int _currentHeldAmount;
+    private int _currentHeldAmount = 0;
 
     private float _currentTimeToGain;
 
@@ -47,7 +47,10 @@ public class PassiveGenerator : MonoBehaviour
         SubscribeGeneratorButton();
         SubscribeClaimButton();
 
-        CalculateOfflineEarnings();
+        if(_currentStatus > 0)
+        {
+            CalculateOfflineEarnings();
+        }
 
         InvokeRepeating("DisplayGeneratorInfo", 1, 1);
 
