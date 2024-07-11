@@ -38,7 +38,7 @@ public class ElixirsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        //_adblockObject.SetActive(true);
+        _adblockObject.SetActive(true);
 
         _availableElixirColors = new List<ElixirColors>()
         {
@@ -56,7 +56,20 @@ public class ElixirsManager : MonoBehaviour
             {ElixirColors.Yellow, _yellowSprite },
         };
 
-        RandomlyPlaceElixirs();
+        SetUpElixirs();
+    }
+    private void SetUpElixirs()
+    {
+        foreach(var slot in _elixirSlots)
+        {
+            _hasClaimedElixir = false;
+            slot.ShowCrate();
+
+            RandomlyPlaceElixirs();
+
+            //do after an ad
+            SeeThroughRandomCrates();
+        }
     }
     private void RandomlyPlaceElixirs()
     {
@@ -66,10 +79,6 @@ public class ElixirsManager : MonoBehaviour
             int randomIndex = Random.Range(i, _availableElixirColors.Count);
             _availableElixirColors[i] = _availableElixirColors[randomIndex];
             _availableElixirColors[randomIndex] = temp;
-        }
-        foreach(var color in _availableElixirColors)
-        {
-            print(color);
         }
         for(int i = 0; i<_elixirSlots.Count; i++)
         {
@@ -81,15 +90,17 @@ public class ElixirsManager : MonoBehaviour
     {
         if (_hasClaimedElixir)
         {
-            //has claimed
+            return;
         }
+
+        _hasClaimedElixir = true;
 
         foreach(var slot in _elixirSlots)
         {
             slot.HideCrate();
+            //small explosion effect
         }
         MinigameRewardCalculator.instance.CalculateElixirMultipliedCurrency(GetMultiplier(elixirColor));
-        //apply
     }
     private int GetMultiplier(ElixirColors elixirColor)
     {
@@ -107,4 +118,22 @@ public class ElixirsManager : MonoBehaviour
                 return 1;
         }
     }
+    private void SeeThroughRandomCrates()
+    {
+        List<ElixirSlot> pickedRandomSlots = new List<ElixirSlot>();
+
+        for(int i = 0; i < 3; i++)
+        {
+            ElixirSlot pickedRandomSlot = _elixirSlots[Random.Range(0, _elixirSlots.Count)];
+            if (!pickedRandomSlots.Contains(pickedRandomSlot))
+            {
+                pickedRandomSlots.Add(pickedRandomSlot);
+            }
+        }
+        foreach(ElixirSlot slot in pickedRandomSlots)
+        {
+            slot.SeeThroughCrate();
+        }
+    }
+    
 }

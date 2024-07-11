@@ -40,7 +40,10 @@ public class PlayerTouchManager : MonoBehaviour
         var results = new List<RaycastResult>();
         _graphicRaycaster.Raycast(pointerEventData, results);
 
-        HandleElixirCrateClick(results[0]);
+        if (results.Count > 0)
+        {
+            HandleElixirCrateClick(results[0]);
+        }
     }
     private void HandleElixirCrateClick(RaycastResult result)
     {

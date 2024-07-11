@@ -16,6 +16,7 @@ public class MonsterUpgradeManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _currentLevelText;
     [SerializeField] private TextMeshProUGUI _bonusTipText;
+    [SerializeField] private TextMeshProUGUI _levelUpgradePriceText;
 
     [SerializeField] private Button _upgradeButton;
 
@@ -98,6 +99,7 @@ public class MonsterUpgradeManager : MonoBehaviour
     private void DisplayLevelInfo()
     {
         _currentLevelText.text = $"Level {_currentLevelData.level}";
+        _levelUpgradePriceText.text = $"{_currentLevelData.upgradeCost}";
 
         StartCoroutine(CheckNextBonusLevel(_currentMonsterLevel));
     }

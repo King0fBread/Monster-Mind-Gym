@@ -39,4 +39,8 @@ public class ElixirSlot : MonoBehaviour
     {
         _crateImage.color = _hiddenCrateColor;
     }
+    public void ShowCrate()
+    {
+        _crateImage.color = _visibleCrateColor;
+    }
 }

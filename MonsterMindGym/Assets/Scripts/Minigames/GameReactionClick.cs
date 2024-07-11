@@ -29,6 +29,8 @@ public class GameReactionClick : MonoBehaviour, IFinishableGame
     private float _bestClickTime;
     private float _currentClickTime;
 
+    private bool _lostRound;
+
     private void OnEnable()
     {
         _colorButton.onClick.RemoveAllListeners();
@@ -44,6 +46,8 @@ public class GameReactionClick : MonoBehaviour, IFinishableGame
 
         _bestClickTime = 100f;
         _currentClickTime = 0;
+
+        _lostRound = false;
     }
     private void CheckCurrentColor()
     {
@@ -69,15 +73,20 @@ public class GameReactionClick : MonoBehaviour, IFinishableGame
         }
         else
         {
-            //lose round
+            _lostRound = true;
+            FinishGameAndDisplayResult();
         }
     }
     public void FinishGameAndDisplayResult()
     {
         int totalPoints = 0;
-        foreach (int roundPoints in _totalAchievedPointsInThreeRounds)
+
+        if (!_lostRound)
         {
-            totalPoints += roundPoints;
+            foreach (int roundPoints in _totalAchievedPointsInThreeRounds)
+            {
+                totalPoints += roundPoints;
+            }
         }
 
         if (totalPoints < 1)
@@ -127,7 +136,7 @@ public class GameReactionClick : MonoBehaviour, IFinishableGame
         {
             _currentClickTime += Time.deltaTime;
 
-            _achievedPointsPrecise -= Time.deltaTime * 100f;
+            _achievedPointsPrecise -= Time.deltaTime * 80f;
         }
     }
 }
