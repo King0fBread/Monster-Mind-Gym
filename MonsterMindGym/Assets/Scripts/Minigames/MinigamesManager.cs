@@ -110,4 +110,9 @@ public class MinigamesManager : MonoBehaviour
         CalculateUnlockedMinigames();
 
     }
+    public void ResetUnlockedMinigamesDEVELOPMENT()
+    {
+        _unlockedMinigamesID = 0;
+        PlayerPrefs.SetInt("UnlockedMinigamesID", _unlockedMinigamesID);
+    }
 }

@@ -13,6 +13,7 @@ public class CurrencyManager : MonoBehaviour
     private void Awake()
     {
         LoadCurrency();
+        AddCoins(100000);
         _currentCoinsAreDisplayed = false;
     }
     private void Update()

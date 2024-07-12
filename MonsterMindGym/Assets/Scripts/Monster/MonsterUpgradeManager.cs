@@ -27,13 +27,9 @@ public class MonsterUpgradeManager : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _monsterSpriteRenderer;
 
-    //[SerializeField] List<string> _levelAddresses;
-
     private AsyncOperationHandle<LevelData>? _currentLevelHandle;
-    private AsyncOperationHandle<LevelData>? _requestedLevelHandle;
 
     private LevelData _currentLevelData;
-    private LevelData _requestedLevelData;
 
     private int _currentMonsterLevel;
 
@@ -52,11 +48,21 @@ public class MonsterUpgradeManager : MonoBehaviour
 
         LoadCurrentLevel();
         AssignUpgradeButton();
+
+        //ResetMonsterDEVELOPMENT();
     }
     private void LoadLevelInfo()
     {
         _currentMonsterLevel = PlayerPrefs.GetInt("MonsterLevel", 1);
         _currentVisualMonsterID = PlayerPrefs.GetInt("MonsterVisualID", 0);
+    }
+    private void ResetMonsterDEVELOPMENT()
+    {
+        _currentMonsterLevel = 1;
+        _currentVisualMonsterID  = 0;
+        EnergyManager.Instance.ResetEnergyDEVELOPMENT();
+        _minigameManager.ResetUnlockedMinigamesDEVELOPMENT();
+        _postGameBonus.ResetBonusAmountDEVELOPMENT();
     }
     private void AssignUpgradeButton()
     {
@@ -82,8 +88,9 @@ public class MonsterUpgradeManager : MonoBehaviour
         {
             _currentLevelData = handle.Result;
 
-            DisplayLevelInfo();
             DisplayMonsterVisual();
+            DisplaySpecialEffect();
+            DisplayLevelInfo();
             TryUpgradeMonsterStats();
         }
     }
@@ -106,6 +113,17 @@ public class MonsterUpgradeManager : MonoBehaviour
     private void DisplayMonsterVisual()
     {
         _monsterSpriteRenderer.sprite = _monsterEvoluitionStages[_currentVisualMonsterID];
+    }
+    private void DisplaySpecialEffect()
+    {
+        if (_currentLevelData.visuallyUpgradeMonster)
+        {
+            SpecialEffectsManager.Instance.DisplayMonsterVisualUpgradeEffect();
+        }
+        else
+        {
+            SpecialEffectsManager.Instance.DisplayMonsterBasicUpgradeEffect();
+        }
     }
     public void TryUpgradeLevel()
     {
@@ -180,7 +198,7 @@ public class MonsterUpgradeManager : MonoBehaviour
             }
         }
 
-        _bonusTipText.text = "No more upgrades available.";
+        _bonusTipText.text = "MAX LEVEL";
     }
     private bool RequestedLevelHasUpgrades(LevelData requestedLevelData)
     {

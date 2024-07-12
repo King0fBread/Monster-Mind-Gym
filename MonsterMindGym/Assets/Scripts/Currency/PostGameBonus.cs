@@ -37,4 +37,9 @@ public class PostGameBonus : MonoBehaviour
         PlayerPrefs.SetInt("PostGameBonus", _bonusAmount);
         PlayerPrefs.Save();
     }
+    public void ResetBonusAmountDEVELOPMENT()
+    {
+        _bonusAmount = 10;
+        PlayerPrefs.SetInt("PostGameBonus", _bonusAmount);
+    }
 }
