@@ -27,6 +27,8 @@ public class MonsterUpgradeManager : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _monsterSpriteRenderer;
 
+    [SerializeField] UpgradeDescriptionPopup _upgradePopup;
+
     private AsyncOperationHandle<LevelData>? _currentLevelHandle;
 
     private LevelData _currentLevelData;
@@ -89,9 +91,14 @@ public class MonsterUpgradeManager : MonoBehaviour
             _currentLevelData = handle.Result;
 
             DisplayMonsterVisual();
-            DisplaySpecialEffect();
             DisplayLevelInfo();
+            DisplaySpecialEffect();
             TryUpgradeMonsterStats();
+
+            if (RequestedLevelHasUpgrades(_currentLevelData))
+            {
+                _upgradePopup.DisplayUpgradePopup(_currentLevelData);
+            }
         }
     }
     private void OnLevelsAmountLoadedCompleted(AsyncOperationHandle<IList<IResourceLocation>> handle)
@@ -137,7 +144,7 @@ public class MonsterUpgradeManager : MonoBehaviour
         }
         else
         {
-            print("not enough coins!");
+            print("not enough coins or max lvl");
         }
 
     }
