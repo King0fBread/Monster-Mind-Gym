@@ -54,13 +54,6 @@ public class EnergyManager : MonoBehaviour
         string lastEnergyUpdateString = PlayerPrefs.GetString(_lastEnergyUpdateKey, DateTime.Now.ToString());
         _lastEnergyUpdate = DateTime.Parse(lastEnergyUpdateString);
     }
-    public void ResetEnergyDEVELOPMENT()
-    {
-        _maxEnergy = 10;
-        PlayerPrefs.SetInt(_maxEnergyKey, _maxEnergy);
-        _energyRecoveryTimeInMinutes = 5;
-        PlayerPrefs.SetString(_energyRecoveryTimeInMinutesKey, _energyRecoveryTimeInMinutes.ToString("0.0"));
-    }
     private void SaveEnergyData()
     {
         PlayerPrefs.SetInt(_currentEnergyKey, _currentEnergy);

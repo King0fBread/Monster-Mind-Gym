@@ -27,7 +27,8 @@ public class MonsterUpgradeManager : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _monsterSpriteRenderer;
 
-    [SerializeField] UpgradeDescriptionPopup _upgradePopup;
+    [SerializeField] private UpgradeDescriptionPopup _upgradePopup;
+    [SerializeField] private PlayerNotification _playerNotification;
 
     private AsyncOperationHandle<LevelData>? _currentLevelHandle;
 
@@ -50,21 +51,11 @@ public class MonsterUpgradeManager : MonoBehaviour
 
         LoadCurrentLevel();
         AssignUpgradeButton();
-
-        //ResetMonsterDEVELOPMENT();
     }
     private void LoadLevelInfo()
     {
         _currentMonsterLevel = PlayerPrefs.GetInt("MonsterLevel", 1);
         _currentVisualMonsterID = PlayerPrefs.GetInt("MonsterVisualID", 0);
-    }
-    private void ResetMonsterDEVELOPMENT()
-    {
-        _currentMonsterLevel = 1;
-        _currentVisualMonsterID  = 0;
-        EnergyManager.Instance.ResetEnergyDEVELOPMENT();
-        _minigameManager.ResetUnlockedMinigamesDEVELOPMENT();
-        _postGameBonus.ResetBonusAmountDEVELOPMENT();
     }
     private void AssignUpgradeButton()
     {
@@ -79,6 +70,11 @@ public class MonsterUpgradeManager : MonoBehaviour
         }
         _currentLevelHandle = Addressables.LoadAssetAsync<LevelData>($"Level_{_currentMonsterLevel}");
         _currentLevelHandle.Value.Completed += OnLevelDataLoaded;
+    }
+    private void NotifyPlayerReachedMaxLevel()
+    {
+        _playerNotification.DisplayNotification("MAX LEVEL");
+        _playerNotification.DisplayMaxLevelNotification();
     }
     private void CountTotalLevels()
     {
@@ -115,7 +111,10 @@ public class MonsterUpgradeManager : MonoBehaviour
         _currentLevelText.text = $"Level {_currentLevelData.level}";
         _levelUpgradePriceText.text = $"{_currentLevelData.upgradeCost}";
 
-        StartCoroutine(CheckNextBonusLevel(_currentMonsterLevel));
+        if (_currentMonsterLevel > _totalLevelsCount)
+        {
+            StartCoroutine(CheckNextBonusLevel(_currentMonsterLevel));
+        }
     }
     private void DisplayMonsterVisual()
     {
@@ -134,7 +133,7 @@ public class MonsterUpgradeManager : MonoBehaviour
     }
     public void TryUpgradeLevel()
     {
-        if(_currentMonsterLevel<_totalLevelsCount-1 && _currencyManager.TrySpendCoins(_currentLevelData.upgradeCost))
+        if(_currentMonsterLevel<_totalLevelsCount && _currencyManager.TrySpendCoins(_currentLevelData.upgradeCost))
         {
             _currentMonsterLevel++;
             PlayerPrefs.SetInt("MonsterLevel", _currentMonsterLevel);
@@ -144,7 +143,14 @@ public class MonsterUpgradeManager : MonoBehaviour
         }
         else
         {
-            print("not enough coins or max lvl");
+            if(_currentMonsterLevel == _totalLevelsCount)
+            {
+                NotifyPlayerReachedMaxLevel();
+            }
+            else
+            {
+                _playerNotification.DisplayNotification("Need points!");
+            }
         }
 
     }
@@ -179,7 +185,6 @@ public class MonsterUpgradeManager : MonoBehaviour
             PlayerPrefs.SetInt("MonsterVisualID", _currentVisualMonsterID);
             DisplayMonsterVisual();
         }
-        //notification about the bonus
     }
     private IEnumerator CheckNextBonusLevel(int currentLevel)
     {
@@ -216,6 +221,8 @@ public class MonsterUpgradeManager : MonoBehaviour
         if (requestedLevelData.unlockNextMinigame)
             return true;
         if (requestedLevelData.visuallyUpgradeMonster)
+            return true;
+        if (requestedLevelData.increasePostMinigameBonus)
             return true;
 
         return false;

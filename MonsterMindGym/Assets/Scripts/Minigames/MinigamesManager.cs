@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MinigamesManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class MinigamesManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _upcomingGameText;
 
     [SerializeField] private GameObject _startMinigameObject;
+
+    [SerializeField] private PlayerNotification _playerNotification;
 
     [System.Serializable]
     public class MinigameObjectAndIconPair
@@ -91,7 +94,7 @@ public class MinigamesManager : MonoBehaviour
         }
         else
         {
-
+            _playerNotification.DisplayNotification("Need Energy!");
         }
 
     }
@@ -109,10 +112,5 @@ public class MinigamesManager : MonoBehaviour
 
         CalculateUnlockedMinigames();
 
-    }
-    public void ResetUnlockedMinigamesDEVELOPMENT()
-    {
-        _unlockedMinigamesID = 0;
-        PlayerPrefs.SetInt("UnlockedMinigamesID", _unlockedMinigamesID);
     }
 }
