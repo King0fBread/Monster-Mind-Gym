@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Properties;
 using UnityEngine;
 
 public class RewardScreenManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class RewardScreenManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _pointsValueText;
     [SerializeField] private TextMeshProUGUI _scoreValueText;
+
+    [SerializeField] private SpecialEffectsManager _specialEffectsManager;
 
     public static RewardScreenManager instance { get { return _instance; } }
     private static RewardScreenManager _instance;
@@ -37,6 +40,8 @@ public class RewardScreenManager : MonoBehaviour
             _scoreValueText.text = "Best time is " + bestTimeIfPresent.ToString();
 
         _elixirsManager.gameObject.SetActive(true);
+
+        _specialEffectsManager.DisplayMinigameFinishedEffect();
     }
     public void DisplayMultipliedPoints(int earnedPoints)
     {

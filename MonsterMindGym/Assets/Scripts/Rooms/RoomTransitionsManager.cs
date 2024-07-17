@@ -14,6 +14,8 @@ public class RoomTransitionsManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _roomNameText;
     [SerializeField] private Button[] _movementButtonsLeftRight = new Button[2];
 
+    [SerializeField] private GameObject _roomNameRootObject;
+
     private RoomInfo _currentRoom;
     private Camera _camera;
 
@@ -46,6 +48,9 @@ public class RoomTransitionsManager : MonoBehaviour
     {
         BlackoutScreenDelayManager.Instance.InitiateBlackoutDelay();
 
+        _roomNameText.text = _currentRoom.GetRoomName();
+        _roomNameRootObject.SetActive(true);
+
         yield return new WaitForSeconds(0.30f);
 
         if (isMovingToInitialRoom)
@@ -58,7 +63,6 @@ public class RoomTransitionsManager : MonoBehaviour
         }
 
         _camera.transform.position = _currentRoom.GetCamTransformPosition();
-        _roomNameText.text = _currentRoom.GetRoomName();
 
         for (int i = 0; i < _movementButtonsLeftRight.Length; i++)
         {

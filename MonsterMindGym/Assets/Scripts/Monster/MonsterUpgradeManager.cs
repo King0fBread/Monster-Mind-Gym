@@ -45,6 +45,8 @@ public class MonsterUpgradeManager : MonoBehaviour
 
     private void Awake()
     {
+
+        PlayerPrefs.DeleteAll();
         LoadLevelInfo();
 
         CountTotalLevels();

@@ -8,6 +8,8 @@ public class SpecialEffectsManager : MonoBehaviour
     [Header("Monster Upgrade Effects")]
     [SerializeField] private GameObject _monsterVisualUpgradeSpecialEffect;
     [SerializeField] private GameObject _monsterBasicUpgradeSpecialEffect;
+    [Header("Minigames Effects")]
+    [SerializeField] private GameObject _minigameFinishedEffect;
 
     private static SpecialEffectsManager _instance;
     public static SpecialEffectsManager Instance { get { return _instance; } }
@@ -29,5 +31,9 @@ public class SpecialEffectsManager : MonoBehaviour
     public void DisplayMonsterBasicUpgradeEffect()
     {
         _monsterBasicUpgradeSpecialEffect.SetActive(true);
+    }
+    public void DisplayMinigameFinishedEffect()
+    {
+        _minigameFinishedEffect.SetActive(true);
     }
 }

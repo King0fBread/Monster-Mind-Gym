@@ -48,8 +48,14 @@ TagManager:
   - name: BackLayer
     uniqueID: 307860453
     locked: 0
+  - name: Back-Mid
+    uniqueID: 2542497117
+    locked: 0
   - name: MidLayer
     uniqueID: 391713231
+    locked: 0
+  - name: Mid-Front
+    uniqueID: 349683493
     locked: 0
   - name: FrontLayer
     uniqueID: 913094821
