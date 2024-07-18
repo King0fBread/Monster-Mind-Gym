@@ -30,6 +30,8 @@ public class MonsterUpgradeManager : MonoBehaviour
     [SerializeField] private UpgradeDescriptionPopup _upgradePopup;
     [SerializeField] private PlayerNotification _playerNotification;
 
+    [SerializeField] private MonsterCapsuleUpdater _monsterCapsuleUpdater;
+
     private AsyncOperationHandle<LevelData>? _currentLevelHandle;
 
     private LevelData _currentLevelData;
@@ -137,6 +139,13 @@ public class MonsterUpgradeManager : MonoBehaviour
     {
         if(_currentMonsterLevel<_totalLevelsCount && _currencyManager.TrySpendCoins(_currentLevelData.upgradeCost))
         {
+            if(_currentMonsterLevel == _totalLevelsCount - 1)
+            {
+                NotifyPlayerReachedMaxLevel();
+                _monsterCapsuleUpdater.SwitchToBrokenCapsule();
+                _upgradeButton.gameObject.SetActive(false);
+            }
+
             _currentMonsterLevel++;
             PlayerPrefs.SetInt("MonsterLevel", _currentMonsterLevel);
             _playerHasClaimedLevelUpgrades = false;
@@ -145,15 +154,10 @@ public class MonsterUpgradeManager : MonoBehaviour
         }
         else
         {
-            if(_currentMonsterLevel == _totalLevelsCount)
-            {
-                NotifyPlayerReachedMaxLevel();
-            }
-            else
-            {
-                _playerNotification.DisplayNotification("Need points!");
-            }
+            _playerNotification.DisplayNotification("Need points!");
         }
+        print("current " + _currentMonsterLevel);
+        print("total " + _totalLevelsCount);
 
     }
     private void TryUpgradeMonsterStats()
