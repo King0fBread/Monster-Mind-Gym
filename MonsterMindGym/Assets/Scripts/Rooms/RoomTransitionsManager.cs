@@ -48,9 +48,6 @@ public class RoomTransitionsManager : MonoBehaviour
     {
         BlackoutScreenDelayManager.Instance.InitiateBlackoutDelay();
 
-        _roomNameText.text = _currentRoom.GetRoomName();
-        _roomNameRootObject.SetActive(true);
-
         yield return new WaitForSeconds(0.30f);
 
         if (isMovingToInitialRoom)
@@ -61,6 +58,11 @@ public class RoomTransitionsManager : MonoBehaviour
         {
             ExecuteAreaExitEntranceMechanics(isMovingToLeftRoom);
         }
+
+        _roomNameText.text = _currentRoom.GetRoomName();
+
+        _roomNameRootObject.SetActive(false);
+        _roomNameRootObject.SetActive(true);
 
         _camera.transform.position = _currentRoom.GetCamTransformPosition();
 

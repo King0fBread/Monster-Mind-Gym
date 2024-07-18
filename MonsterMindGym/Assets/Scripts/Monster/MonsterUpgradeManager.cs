@@ -115,9 +115,13 @@ public class MonsterUpgradeManager : MonoBehaviour
         _currentLevelText.text = $"Level {_currentLevelData.level}";
         _levelUpgradePriceText.text = $"{_currentLevelData.upgradeCost}";
 
-        if (_currentMonsterLevel > _totalLevelsCount)
+        if (_currentMonsterLevel < _totalLevelsCount)
         {
             StartCoroutine(CheckNextBonusLevel(_currentMonsterLevel));
+        }
+        else
+        {
+            _bonusTipText.text = "MAX LEVEL";
         }
     }
     private void DisplayMonsterVisual()
@@ -139,10 +143,14 @@ public class MonsterUpgradeManager : MonoBehaviour
     {
         if(_currentMonsterLevel<_totalLevelsCount && _currencyManager.TrySpendCoins(_currentLevelData.upgradeCost))
         {
-            if(_currentMonsterLevel == _totalLevelsCount - 1)
+            if(_currentMonsterLevel == 79)
+            {
+                _monsterCapsuleUpdater.SwitchToBrokenCapsule();
+            }
+            else if(_currentMonsterLevel == _totalLevelsCount - 1)
             {
                 NotifyPlayerReachedMaxLevel();
-                _monsterCapsuleUpdater.SwitchToBrokenCapsule();
+                _monsterCapsuleUpdater.RemoveCapsule();
                 _upgradeButton.gameObject.SetActive(false);
             }
 
@@ -156,8 +164,6 @@ public class MonsterUpgradeManager : MonoBehaviour
         {
             _playerNotification.DisplayNotification("Need points!");
         }
-        print("current " + _currentMonsterLevel);
-        print("total " + _totalLevelsCount);
 
     }
     private void TryUpgradeMonsterStats()
@@ -216,7 +222,6 @@ public class MonsterUpgradeManager : MonoBehaviour
             }
         }
 
-        _bonusTipText.text = "MAX LEVEL";
     }
     private bool RequestedLevelHasUpgrades(LevelData requestedLevelData)
     {
