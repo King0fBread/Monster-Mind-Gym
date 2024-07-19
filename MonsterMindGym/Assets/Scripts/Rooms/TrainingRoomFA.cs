@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TrainingRoomFA : MonoBehaviour, IFunctionalArea
 {
     [SerializeField] private GameObject _startMinigameObject;
+    [SerializeField] private GameObject _postGameBonus;
     public void ExecuteMechanicOnAreaEntrance()
     {
         _startMinigameObject.SetActive(true);
@@ -13,5 +14,6 @@ public class TrainingRoomFA : MonoBehaviour, IFunctionalArea
     public void ExecuteMechanicOnAreaExit()
     {
         _startMinigameObject.SetActive(false);
+        _postGameBonus.SetActive(false);
     }
 }
