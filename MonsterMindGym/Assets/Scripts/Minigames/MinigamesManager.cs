@@ -77,6 +77,8 @@ public class MinigamesManager : MonoBehaviour
         _upcomingGameText.text = "Upcoming game: " + _currentMinigame.name;
 
         _getReadyScreenObject.GetComponent<DisableSelfOrSpecified>().objectToToggle = _currentMinigame;
+
+        SoundsManager.Instance.PlaySound(SoundsManager.Sounds.Countdown);
     }
     public void ToggleStaticUIObjects(bool activeState)
     {

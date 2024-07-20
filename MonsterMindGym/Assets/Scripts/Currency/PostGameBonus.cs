@@ -29,6 +29,8 @@ public class PostGameBonus : MonoBehaviour
 
         _trainObject.SetActive(true);
         gameObject.SetActive(false);
+
+        SoundsManager.Instance.PlaySound(SoundsManager.Sounds.CoinsCollect);
     }
     public void IncreaseBonusAmount()
     {

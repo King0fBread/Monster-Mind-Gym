@@ -35,7 +35,7 @@ public class GameAimTrainer : MonoBehaviour, IFinishableGame
     }
     private void DisplayNextTargetPosition()
     {
-
+        
         _currentNumberOfTargets++;
 
         if(_currentNumberOfTargets < _totalNumberOfTargets)

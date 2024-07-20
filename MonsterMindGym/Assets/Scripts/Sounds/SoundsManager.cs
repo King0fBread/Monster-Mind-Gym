@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundsManager : MonoBehaviour
 {
@@ -36,7 +34,6 @@ public class SoundsManager : MonoBehaviour
         }
 
         PlaySound(Sounds.BackgroundMusicLab);
-
     }
     private void Update()
     {
@@ -57,6 +54,14 @@ public class SoundsManager : MonoBehaviour
         UIButtonClick,
         UIButtonSelect,
 
+    }
+    public void PlayMinigameTargetSound()
+    {
+        PlaySound(Sounds.MinigameTargetShot);
+    }
+    public void PlayMinigameButtonSound()
+    {
+        PlaySound(Sounds.MinigameButtonClick);
     }
     public void PlaySound(Sounds sound)
     {

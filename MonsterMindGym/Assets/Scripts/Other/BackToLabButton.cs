@@ -29,5 +29,7 @@ public class BackToLabButton : MonoBehaviour
 
         _currencyManager.AddEarnedMinigameCoins();
 
+        SoundsManager.Instance.PlaySound(SoundsManager.Sounds.CoinsCollect);
+
     }
 }

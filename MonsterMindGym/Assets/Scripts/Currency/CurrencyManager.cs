@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Lumin;
 
 public class CurrencyManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinsDisplayText;
+    [SerializeField] private GameObject _coinsCollectionAnimationObject;
 
     private int _coins;
     private bool _currentCoinsAreDisplayed;
@@ -26,11 +26,13 @@ public class CurrencyManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         _coins += amount;
+        _coinsCollectionAnimationObject.SetActive(true);
         SaveCurrency();
     }
     public void AddEarnedMinigameCoins()
     {
         _coins += MinigameRewardCalculator.instance.GetMinigameCurrencyAmount();
+        _coinsCollectionAnimationObject.SetActive(true);
         SaveCurrency();
     }
     public bool TrySpendCoins(int amount)

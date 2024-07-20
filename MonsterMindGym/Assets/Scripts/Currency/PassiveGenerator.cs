@@ -169,7 +169,10 @@ public class PassiveGenerator : MonoBehaviour
             _currencyManager.AddCoins(_currentHeldAmount);
             _currentHeldAmount = 0;
 
+            SoundsManager.Instance.PlaySound(SoundsManager.Sounds.CoinsCollect);
+
             SaveGeneratorInfo();
+
         }
     }
     private void CalculateOfflineEarnings()
