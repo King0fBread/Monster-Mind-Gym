@@ -48,6 +48,8 @@ public class RoomTransitionsManager : MonoBehaviour
     {
         BlackoutScreenDelayManager.Instance.InitiateBlackoutDelay();
 
+        SoundsManager.Instance.PlaySound(SoundsManager.Sounds.UIButtonSelect);
+
         yield return new WaitForSeconds(0.30f);
 
         if (isMovingToInitialRoom)

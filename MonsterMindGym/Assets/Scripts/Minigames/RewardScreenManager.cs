@@ -37,7 +37,7 @@ public class RewardScreenManager : MonoBehaviour
         if (bestLevelIfPresent != 0)
             _scoreValueText.text = "Level " + bestLevelIfPresent.ToString();
         else if (bestTimeIfPresent != 0.0f)
-            _scoreValueText.text = "Best time is " + bestTimeIfPresent.ToString();
+            _scoreValueText.text = "Time " + bestTimeIfPresent.ToString();
 
         _elixirsManager.gameObject.SetActive(true);
 

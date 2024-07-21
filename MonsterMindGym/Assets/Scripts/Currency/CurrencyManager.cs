@@ -26,13 +26,17 @@ public class CurrencyManager : MonoBehaviour
     public void AddCoins(int amount)
     {
         _coins += amount;
+        _coinsCollectionAnimationObject.SetActive(false);
         _coinsCollectionAnimationObject.SetActive(true);
         SaveCurrency();
     }
     public void AddEarnedMinigameCoins()
     {
         _coins += MinigameRewardCalculator.instance.GetMinigameCurrencyAmount();
+
+        _coinsCollectionAnimationObject.SetActive(false);
         _coinsCollectionAnimationObject.SetActive(true);
+
         SaveCurrency();
     }
     public bool TrySpendCoins(int amount)

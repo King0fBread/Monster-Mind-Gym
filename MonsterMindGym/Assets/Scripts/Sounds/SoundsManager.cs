@@ -8,6 +8,8 @@ public class SoundsManager : MonoBehaviour
 
     private bool _isRequestedSoundBackgroundMusic = false;
 
+    private bool _shouldPlayBackgroundMusic = true;
+
     private AudioClip _currentBackgroundMusicSoundClip;
 
     public AudioClipPairedToSound[] _audioClipsPairedToSound;
@@ -37,7 +39,7 @@ public class SoundsManager : MonoBehaviour
     }
     private void Update()
     {
-        if(!_backgroundMusicAudioSource.isPlaying && _currentBackgroundMusicSoundClip != null)
+        if(!_backgroundMusicAudioSource.isPlaying && _currentBackgroundMusicSoundClip != null && _shouldPlayBackgroundMusic)
         {
             _backgroundMusicAudioSource.PlayOneShot(_currentBackgroundMusicSoundClip);
         }
@@ -53,6 +55,7 @@ public class SoundsManager : MonoBehaviour
         MonsterUpgradeEvolution,
         UIButtonClick,
         UIButtonSelect,
+        GeneratorInteraction
 
     }
     public void PlayMinigameTargetSound()
@@ -90,7 +93,29 @@ public class SoundsManager : MonoBehaviour
         }
         else
         {
+            _soundEffectsAudioSource.Stop();
             _soundEffectsAudioSource.PlayOneShot(clip);
         }
+    }
+    public void ToggleBackgroundMusic()
+    {
+        _shouldPlayBackgroundMusic = !_shouldPlayBackgroundMusic;
+
+        if (!_shouldPlayBackgroundMusic)
+        {
+            StopBackgroundMusic();
+        }
+        else
+        {
+            PlaySound(Sounds.BackgroundMusicLab);
+        }
+    }
+    public void StopSound()
+    {
+        _soundEffectsAudioSource.Stop();
+    }
+    public void StopBackgroundMusic()
+    {
+        _backgroundMusicAudioSource.Stop();
     }
 }

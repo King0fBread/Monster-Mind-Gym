@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Properties;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerNotification : MonoBehaviour

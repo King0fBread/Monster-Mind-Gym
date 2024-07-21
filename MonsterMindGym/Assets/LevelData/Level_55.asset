@@ -17,5 +17,5 @@ MonoBehaviour:
   maxEnergyIncrease: 1
   energyRecoveryDecrease: 0
   unlockNextMinigame: 0
-  increasePostMinigameBonus: 0
+  increasePostMinigameBonus: 1
   visuallyUpgradeMonster: 0

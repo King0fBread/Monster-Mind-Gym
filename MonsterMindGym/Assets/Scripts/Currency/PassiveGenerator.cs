@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 public class PassiveGenerator : MonoBehaviour
@@ -21,6 +17,9 @@ public class PassiveGenerator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _maxAmountText;
 
     [SerializeField] private GameObject _generatorBuyObject;
+
+    [SerializeField] private GameObject _generatorParticleSystem;
+    [SerializeField] private GameObject _generatorInteractionEffectObject;
 
     private int _currentStatus;
     private int _currentMaxAmount;
@@ -40,13 +39,14 @@ public class PassiveGenerator : MonoBehaviour
     }
     private void Awake()
     {
-        PlayerPrefs.SetInt("ButtonStatus", 0);
         LoadGeneratorInfo();
 
         SubscribeGeneratorButton();
         SubscribeClaimButton();
 
-        if(_currentStatus > 0)
+        TryDisplayParticles();
+
+        if (_currentStatus > 0)
         {
             CalculateOfflineEarnings();
         }
@@ -65,6 +65,13 @@ public class PassiveGenerator : MonoBehaviour
         }
         _currentMaxAmount = _generatorStages[_currentStatus].maxAmount;
         _currentTimeToGain = _generatorStages[_currentStatus].secondsToGainCurrency;
+    }
+    private void TryDisplayParticles()
+    {
+        if(_currentStatus > 0)
+        {
+            _generatorParticleSystem.SetActive(true);
+        }
     }
     private void SaveGeneratorInfo()
     {
@@ -119,6 +126,10 @@ public class PassiveGenerator : MonoBehaviour
 
             SaveGeneratorInfo();
             SubscribeGeneratorButton();
+            TryDisplayParticles();
+
+            _generatorInteractionEffectObject.SetActive(true);
+            SoundsManager.Instance.PlaySound(SoundsManager.Sounds.GeneratorInteraction);
         }
         else
         {
@@ -138,6 +149,9 @@ public class PassiveGenerator : MonoBehaviour
                 _currentMaxAmount = _generatorStages[_currentStatus].maxAmount;
 
                 SaveGeneratorInfo();
+
+                _generatorInteractionEffectObject.SetActive(true);
+                SoundsManager.Instance.PlaySound(SoundsManager.Sounds.GeneratorInteraction);
             }
         }
     }

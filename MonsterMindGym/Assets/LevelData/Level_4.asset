@@ -16,6 +16,6 @@ MonoBehaviour:
   upgradeCost: 400
   maxEnergyIncrease: 0
   energyRecoveryDecrease: 0
-  unlockNextMinigame: 0
+  unlockNextMinigame: 1
   increasePostMinigameBonus: 0
   visuallyUpgradeMonster: 0

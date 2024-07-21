@@ -94,6 +94,11 @@ public class GameReactionClick : MonoBehaviour, IFinishableGame
             totalPoints = 1;
         }
 
+        if(_bestClickTime == 100)
+        {
+            _bestClickTime = 0;
+        }
+
         MinigameRewardCalculator.instance.CalculateInitialEarnedCurrency(totalPoints);
         RewardScreenManager.instance.EnableRewardScreen(totalPoints, bestTimeIfPresent: Math.Round(_bestClickTime,3));
 

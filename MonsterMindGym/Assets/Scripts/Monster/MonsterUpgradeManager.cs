@@ -95,6 +95,8 @@ public class MonsterUpgradeManager : MonoBehaviour
             DisplaySpecialEffect();
             TryUpgradeMonsterStats();
 
+            PlayAppropriateUpgradeSound();
+
             if (RequestedLevelHasUpgrades(_currentLevelData))
             {
                 _upgradePopup.DisplayUpgradePopup(_currentLevelData);
@@ -237,6 +239,17 @@ public class MonsterUpgradeManager : MonoBehaviour
             return true;
 
         return false;
+    }
+    private void PlayAppropriateUpgradeSound()
+    {
+        if (_currentLevelData.visuallyUpgradeMonster)
+        {
+            SoundsManager.Instance.PlaySound(SoundsManager.Sounds.MonsterUpgradeEvolution);
+        }
+        else
+        {
+            SoundsManager.Instance.PlaySound(SoundsManager.Sounds.MonsterUpgradeBasic);
+        }
     }
 
 

@@ -28,6 +28,8 @@ public class GameAimTrainer : MonoBehaviour, IFinishableGame
 
         _currentNumberOfTargets = 0;
 
+        _passedTime = 0;
+
     }
     private void Update()
     {
@@ -47,7 +49,7 @@ public class GameAimTrainer : MonoBehaviour, IFinishableGame
         {
             Math.Round(_passedTime, 2);
 
-            _roundedPoints = Convert.ToInt32( 4 / _passedTime * 150);
+            _roundedPoints = Convert.ToInt32( 6 / _passedTime * 150);
             FinishGameAndDisplayResult();
         }
 
