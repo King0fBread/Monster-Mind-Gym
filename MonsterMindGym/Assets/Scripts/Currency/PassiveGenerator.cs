@@ -143,8 +143,13 @@ public class PassiveGenerator : MonoBehaviour
         {
             _currentStatus++;
 
+
             if(_currentStatus < _generatorStages.Length)
             {
+                if(_currentStatus == _generatorStages.Length-1)
+                {
+                    _generatorBuyObject.SetActive(false);
+                }
                 _currentTimeToGain = _generatorStages[_currentStatus].secondsToGainCurrency;
                 _currentMaxAmount = _generatorStages[_currentStatus].maxAmount;
 
@@ -172,7 +177,7 @@ public class PassiveGenerator : MonoBehaviour
         else
         {
             print("max level generator");
-            _generatorBuyObject.SetActive(false);
+            //_generatorBuyObject.SetActive(false);
             return false;
         }
     }

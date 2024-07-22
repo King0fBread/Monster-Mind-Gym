@@ -66,6 +66,10 @@ public class SoundsManager : MonoBehaviour
     {
         PlaySound(Sounds.MinigameButtonClick);
     }
+    public void PlayUIButtonSound()
+    {
+        PlaySound(Sounds.UIButtonClick);
+    }
     public void PlaySound(Sounds sound)
     {
         PlayClipInAppropriateAudioSource(GetRequestedAudioClipBySound(sound));

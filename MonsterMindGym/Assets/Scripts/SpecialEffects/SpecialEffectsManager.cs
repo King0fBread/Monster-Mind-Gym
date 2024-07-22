@@ -26,10 +26,12 @@ public class SpecialEffectsManager : MonoBehaviour
     }
     public void DisplayMonsterVisualUpgradeEffect()
     {
+        _monsterVisualUpgradeSpecialEffect.SetActive(false);
         _monsterVisualUpgradeSpecialEffect.SetActive(true);
     }
     public void DisplayMonsterBasicUpgradeEffect()
     {
+        _monsterBasicUpgradeSpecialEffect.SetActive(false);
         _monsterBasicUpgradeSpecialEffect.SetActive(true);
     }
     public void DisplayMinigameFinishedEffect()
