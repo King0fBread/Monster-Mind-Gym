@@ -15,6 +15,8 @@ public class RewardScreenManager : MonoBehaviour
 
     [SerializeField] private SpecialEffectsManager _specialEffectsManager;
 
+    [SerializeField] private MinigamesManager _minigamesManager;
+
     public static RewardScreenManager instance { get { return _instance; } }
     private static RewardScreenManager _instance;
     private void Awake()
@@ -30,6 +32,8 @@ public class RewardScreenManager : MonoBehaviour
     }
     public void EnableRewardScreen(int earnedPoints, int bestLevelIfPresent = 0, double bestTimeIfPresent = 0.0f)
     {
+        CheckForInterstitialAd();
+
         _resultScreenObject.SetActive(true);
 
         _pointsValueText.text = earnedPoints.ToString();
@@ -42,6 +46,13 @@ public class RewardScreenManager : MonoBehaviour
         _elixirsManager.gameObject.SetActive(true);
 
         _specialEffectsManager.DisplayMinigameFinishedEffect();
+    }
+    private void CheckForInterstitialAd()
+    {
+        if(_minigamesManager.currentGamesPlayed % 3 == 0)
+        {
+            AdsDisplayManager.Instance.interstitialAds.ShowInterstitialAd();
+        }
     }
     public void DisplayMultipliedPoints(int earnedPoints)
     {

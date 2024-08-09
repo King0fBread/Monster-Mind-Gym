@@ -33,6 +33,8 @@ public class MinigamesManager : MonoBehaviour
     private List<GameObject> _playableMinigames;
 
     private GameObject _currentMinigame;
+
+    public int currentGamesPlayed = 0;
     private void Awake()
     {
         _startMinigameObject.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
@@ -92,6 +94,8 @@ public class MinigamesManager : MonoBehaviour
         bool hasEnoughEnergy = EnergyManager.Instance.SpendEnergy();
         if (hasEnoughEnergy)
         {
+            currentGamesPlayed++;
+
             InitiateRandomMinigame();
         }
         else
@@ -99,13 +103,6 @@ public class MinigamesManager : MonoBehaviour
             _playerNotification.DisplayNotification("Need Energy!");
         }
 
-    }
-    private void FinishCurrentMinigameInstance()
-    {
-        ToggleStaticUIObjects(true);
-
-        _currentMinigame = null;
-        _currentMinigame.SetActive(false);
     }
     public void UnlockNextMinigame()
     {
